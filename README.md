@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen02.png)
+![TitleImage](Screenshots/screen03.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -11,6 +11,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 
 2023/02/03 - 15:27: Open world working
 ![Open world working](Screenshots/screen02.png)
+
+2023/02/03 - 16:32: Root texturing and dig effect
+![Open world working](Screenshots/screen03.png)
 
 ## License
 

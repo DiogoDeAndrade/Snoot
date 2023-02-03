@@ -419,7 +419,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.57
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -628,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1311347705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 117.04
-  m_PointLightOuterRadius: 157.67
+  m_PointLightOuterRadius: 538.31
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -770,8 +770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMoveSpeed: 200
   baseRotateSpeed: 180
-  baseThickness: 10
-  varianceThickness: 5
+  baseThickness: 30
+  varianceThickness: 10
   bodyMeshFilter: {fileID: 1127215123}
   headMeshFilter: {fileID: 173423890}
 --- !u!50 &1421163177
