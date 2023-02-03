@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private    float       baseMoveSpeed = 200.0f;
+    [SerializeField] private    float       varianceMoveSpeed = 100.0f;
     [SerializeField] private    float       baseRotateSpeed = 180.0f;
     [SerializeField] private    float       baseThickness = 5.0f;
     [SerializeField] private    float       varianceThickness = 5.0f;
@@ -13,6 +14,9 @@ public class Player : MonoBehaviour
     [SerializeField] private    MeshFilter  headMeshFilter;
     [SerializeField] private    float       collisionRadius = 20.0f;
     [SerializeField] private    Color       deathColor = Color.red;
+    [SerializeField] private    float       initialWater = 10;
+    [SerializeField] private    float       maxWater = 20;
+    [SerializeField] private    float       consumeWaterPerSecond = 0.5f;
 
     private List<Vector3>   path;
     private Rigidbody2D     rb;
@@ -30,6 +34,7 @@ public class Player : MonoBehaviour
     private int             lastPointInsertedIndex;
     private int             meshLastPoint;
     private float           distance;
+    private float           water;
 
     void Start()
     {
@@ -67,6 +72,8 @@ public class Player : MonoBehaviour
         transform.position = transform.up * baseMoveSpeed;
         distance = baseMoveSpeed;
         UpdateRoot();
+
+        water = initialWater;
     }
 
     private void FixedUpdate()
@@ -76,29 +83,49 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        float rotation = Input.GetAxis("Horizontal");
-
-        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -rotation * baseRotateSpeed * Time.deltaTime);
-
-        rb.velocity = transform.up * baseMoveSpeed;
-
         if (baseMoveSpeed > 0)
         {
+            float rotation = Input.GetAxis("Horizontal");
+
+            transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -rotation * baseRotateSpeed * Time.deltaTime);
+
+            rb.velocity = transform.up * (baseMoveSpeed + varianceMoveSpeed * (((water / maxWater) - 0.5f) * 2.0f));
+
             UpdateRoot();
             DetectSelfIntersection();
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+        if (baseMoveSpeed > 0)
+        { 
+            ChangeWater(-consumeWaterPerSecond * Time.deltaTime);
+            if (water <= 0.0f)
+            {
+                Die();
+            }
         }
     }
 
     void DetectSelfIntersection()
     {
         float tolerance = (collisionRadius * 2.0f); tolerance *= tolerance;
-        for (int i = 1; i < path.Count - 5; i++)
+
+        int removeSegments = Mathf.FloorToInt(5 + 10 * (1.0f - (water / maxWater)));
+
+        for (int i = 1; i < path.Count - removeSegments; i++)
         {
             Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
-            float   dist = (cPoint - transform.position).sqrMagnitude;
-            if (dist < tolerance)
+
+            float dp = Math.Abs(Vector3.Dot((path[i] - path[i - 1]).normalized, transform.up));
+            if (dp < 0.5f)
             {
-                Die();
+                float dist = (cPoint - transform.position).sqrMagnitude;
+                if (dist < tolerance)
+                {
+                    Die();
+                }
             }
         }
     }
@@ -247,13 +274,27 @@ public class Player : MonoBehaviour
         StartCoroutine(ShrinkRootCR());
     }
 
+    public void ChangeWater(float delta)
+    {
+        water = Mathf.Clamp(water + delta, 0.0f, 20.0f);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Obstacle obstacle = collision.GetComponent<Obstacle>();
-        if (obstacle)
+        if (obstacle != null)
         {
             // Die!
             Die();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Resource res = collision.GetComponent<Resource>();
+        if (res != null)
+        {
+            res.Grab(this);
         }
     }
 
