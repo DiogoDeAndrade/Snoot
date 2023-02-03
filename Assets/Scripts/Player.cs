@@ -92,17 +92,14 @@ public class Player : MonoBehaviour
     void DetectSelfIntersection()
     {
         float tolerance = (collisionRadius * 2.0f); tolerance *= tolerance;
-        float minDist = float.MaxValue;
         for (int i = 1; i < path.Count - 5; i++)
         {
             Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
             float   dist = (cPoint - transform.position).sqrMagnitude;
             if (dist < tolerance)
             {
-                baseMoveSpeed = 0.0f;
-                StartCoroutine(ShrinkRootCR());
+                Die();
             }
-            minDist = Mathf.Min(minDist, dist);
         }
     }
 
@@ -242,6 +239,22 @@ public class Player : MonoBehaviour
         mesh.SetTriangles(triangles, 0);
         mesh.RecalculateBounds();
         mesh.UploadMeshData(false);
+    }
+
+    private void Die()
+    {
+        baseMoveSpeed = 0.0f;
+        StartCoroutine(ShrinkRootCR());
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Obstacle obstacle = collision.GetComponent<Obstacle>();
+        if (obstacle)
+        {
+            // Die!
+            Die();
+        }
     }
 
     private void OnDrawGizmos()

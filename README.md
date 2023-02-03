@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen05.png)
+![TitleImage](Screenshots/screen06.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -21,11 +21,15 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 2023/02/03 - 18:07: Root death on self-intersection
 ![Root death](Screenshots/screen05.png)
 
+2023/02/03 - 18:32: Added rocks
+![Rocks](Screenshots/screen06.png)
+
 ## License
 
 * All source code by Diogo Andrade is licensed under the MIT license.
 * [NaughtyAttributes] by Denis Rizov, available through the MIT license.
 * Soil texture by [FabooGuy], free to use (no explicit license)
+* Rock images by [FreeIconsPNG], free to use (no explicit license)
 
 ## Metadata
 
@@ -38,3 +42,4 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 [Global Game Jam'23]:https://globalgamejam.org/
 [CC0]:https://creativecommons.org/publicdomain/zero/1.0/
 [FabooGuy]:https://www.deviantart.com/fabooguy
+[FreeIconsPNG]:https://www.freeiconspng.com/
