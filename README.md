@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen04.png)
+![TitleImage](Screenshots/screen05.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -17,6 +17,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 
 2023/02/03 - 17:17: Dig particle system and lights on areas
 ![Light on areas](Screenshots/screen04.png)
+
+2023/02/03 - 18:07: Root death on self-intersection
+![Root death](Screenshots/screen05.png)
 
 ## License
 

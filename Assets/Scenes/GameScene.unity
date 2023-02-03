@@ -419,7 +419,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.57
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -5476,6 +5476,8 @@ MonoBehaviour:
   varianceThickness: 10
   bodyMeshFilter: {fileID: 1127215123}
   headMeshFilter: {fileID: 173423890}
+  collisionRadius: 20
+  deathColor: {r: 0.3773585, g: 0.20825917, b: 0.20825917, a: 1}
 --- !u!50 &1421163177
 Rigidbody2D:
   serializedVersion: 4

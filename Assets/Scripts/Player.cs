@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private    float       varianceThickness = 5.0f;
     [SerializeField] private    MeshFilter  bodyMeshFilter;
     [SerializeField] private    MeshFilter  headMeshFilter;
+    [SerializeField] private    float       collisionRadius = 20.0f;
+    [SerializeField] private    Color       deathColor = Color.red;
 
     private List<Vector3>   path;
     private Rigidbody2D     rb;
@@ -78,7 +82,28 @@ public class Player : MonoBehaviour
 
         rb.velocity = transform.up * baseMoveSpeed;
 
-        UpdateRoot();
+        if (baseMoveSpeed > 0)
+        {
+            UpdateRoot();
+            DetectSelfIntersection();
+        }
+    }
+
+    void DetectSelfIntersection()
+    {
+        float tolerance = (collisionRadius * 2.0f); tolerance *= tolerance;
+        float minDist = float.MaxValue;
+        for (int i = 1; i < path.Count - 5; i++)
+        {
+            Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
+            float   dist = (cPoint - transform.position).sqrMagnitude;
+            if (dist < tolerance)
+            {
+                baseMoveSpeed = 0.0f;
+                StartCoroutine(ShrinkRootCR());
+            }
+            minDist = Mathf.Min(minDist, dist);
+        }
     }
 
     void UpdateRoot()
@@ -174,6 +199,51 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator ShrinkRootCR()
+    {
+        float totalTime = 0.5f;
+        float time = 0.0f;
+
+        Material material1 = new Material(bodyMeshFilter.GetComponent<MeshRenderer>().material);
+        bodyMeshFilter.GetComponent<MeshRenderer>().material = material1;
+        Material material2 = new Material(headMeshFilter.GetComponent<MeshRenderer>().material);
+        headMeshFilter.GetComponent<MeshRenderer>().material = material1;
+
+        while (time < totalTime)
+        {
+            time += Time.deltaTime;
+
+            float maxDelta = 0.75f * ((baseThickness - varianceThickness) / totalTime) * Time.deltaTime;
+
+            ShrinkMesh(bodyMesh, bodyVertices, bodyUV, bodyTriangles, bodyVertices.Count, maxDelta);
+            ShrinkMesh(headMesh, headVertices, headUV, headTriangles, headVertices.Count - 1, maxDelta);
+
+            material1.SetColor("_Color", Color.Lerp(Color.white, deathColor, (time / totalTime)));
+            material2.SetColor("_Color", Color.Lerp(Color.white, deathColor, (time / totalTime)));
+
+            yield return null;
+        }
+
+    }
+
+    private void ShrinkMesh(Mesh mesh, List<Vector3> vertices, List<Vector2> UV, List<int> triangles, int vertexCount, float maxDelta)
+    {
+        for (int i = 0; i < vertexCount; i += 2)
+        {
+            Vector3 v1 = vertices[i];
+            Vector3 v2 = vertices[i + 1];
+            Vector3 c = (v1 + v2) * 0.5f;
+            vertices[i] = Vector3.MoveTowards(v1, c, maxDelta);
+            vertices[i + 1] = Vector3.MoveTowards(v2, c, maxDelta);
+        }
+
+        mesh.SetVertices(vertices);
+        mesh.SetUVs(0, UV);
+        mesh.SetTriangles(triangles, 0);
+        mesh.RecalculateBounds();
+        mesh.UploadMeshData(false);
+    }
+
     private void OnDrawGizmos()
     {
         if (path == null) return;
@@ -189,5 +259,22 @@ public class Player : MonoBehaviour
 
             Gizmos.DrawLine(path[path.Count - 1], transform.position);
         }
+
+        /*float minDist = float.MaxValue;
+        Vector3 pos = transform.position;
+        for (int i = 1; i < path.Count - 5; i++)
+        {
+            Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
+            float dist = (cPoint - transform.position).sqrMagnitude;
+            if (minDist > dist)
+            {
+                minDist = dist;
+                pos = cPoint;
+            }
+        }
+
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, pos);//*/
     }
 }
