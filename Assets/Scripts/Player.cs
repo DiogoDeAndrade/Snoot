@@ -58,7 +58,11 @@ public class Player : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-        distance = 0.0f;
+        // Run a second of head
+        UpdateRoot();
+        transform.position = transform.up * baseMoveSpeed;
+        distance = baseMoveSpeed;
+        UpdateRoot();
     }
 
     private void FixedUpdate()
@@ -69,11 +73,16 @@ public class Player : MonoBehaviour
     void Update()
     {
         float rotation = Input.GetAxis("Horizontal");
-        
+
         transform.rotation = transform.rotation * Quaternion.Euler(0, 0, -rotation * baseRotateSpeed * Time.deltaTime);
 
         rb.velocity = transform.up * baseMoveSpeed;
 
+        UpdateRoot();
+    }
+
+    void UpdateRoot()
+    { 
         Vector3 currentPos = transform.position;
 
         // Here we should see if this point is necessary

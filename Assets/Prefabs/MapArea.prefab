@@ -97,3 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99f9867d12dd844c86fff43dec7e8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoGenerate: 1
+  lightPrefab: {fileID: 4780519209336104167, guid: 4d6afd319579d1c4fa3a2d22bc276284, type: 3}
+  minMaxLights: {x: 1, y: 3}
