@@ -1,13 +1,16 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen01.png)
+![TitleImage](Screenshots/screen02.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
 # History
 
-2023/02/03 - 14:35
+2023/02/03 - 14:35: Root code working
 ![First screenshot](Screenshots/screen01.png)
+
+2023/02/03 - 15:27: Open world working
+![Open world working](Screenshots/screen02.png)
 
 ## License
 
