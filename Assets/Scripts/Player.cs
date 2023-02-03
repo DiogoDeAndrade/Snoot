@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
 
             Vector3 dir = transform.up;
             Vector3 dirP = new Vector3(dir.y, -dir.x, 0.0f);
-            float radius = baseThickness + varianceThickness * (Mathf.PerlinNoise(0.0f, Time.time * 5.0f) * 2.0f - 1.0f);
+            float radius = baseThickness + varianceThickness * (Mathf.PerlinNoise(0.0f, Time.time * 2.0f) * 2.0f - 1.0f);
 
             headVertices[2] = transform.position - dirP * radius;
             headVertices[3] = transform.position + dirP * radius;
