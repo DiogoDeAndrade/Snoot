@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
     private float               autoRun = 0.0f;
     private GameObject[]        mapNutrient;
     private Coroutine           flashCR;
+    private bool                wasPaused = false;
+    private Vector2             prevVelocity;
 
     struct PrevBranch
     {
@@ -130,6 +132,39 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.isPaused)
+        {
+            if (!wasPaused)
+            {
+                prevVelocity = rb.velocity;
+                rb.velocity = Vector2.zero;
+            }
+            wasPaused = GameManager.instance.isPaused;
+
+            var poemDisplay = FindObjectOfType<PoemDisplay>();
+            if (poemDisplay)
+            {
+                if (poemDisplay.poemIsDisplayed)
+                {
+                    if ((Input.GetButtonDown("Jump")) ||
+                        (Input.GetButtonDown("Fire1")))
+                    {
+                        poemDisplay.HidePoem();
+                    }
+                }
+            }
+
+            return;
+        }
+        else
+        {
+            if (wasPaused)
+            {
+                rb.velocity = prevVelocity;
+            }
+            wasPaused = GameManager.instance.isPaused;
+        }
+
         if (playerControl)
         {
             float rotation = Input.GetAxis("Horizontal");
@@ -630,6 +665,16 @@ public class Player : MonoBehaviour
             {
                 // Just die
                 Die();
+            }
+        }
+        Crystal crystal = collision.GetComponent<Crystal>();
+        if (crystal != null)
+        {
+            var poemDisplay = FindObjectOfType<PoemDisplay>();
+            if (poemDisplay)
+            {
+                poemDisplay.ShowPoem(crystal.text, crystal.image);
+                crystal.Die();
             }
         }
     }

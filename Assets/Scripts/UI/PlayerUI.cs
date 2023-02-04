@@ -14,9 +14,12 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         if (player == null) FindPlayer();
+        if (player == null) return;
         if (!player.isActiveAndEnabled) FindPlayer();
+        if (player == null) return;
         if (!player.playerControl) FindPlayer();
-        
+        if (player == null) return;
+
         if (player != null)
         {
             RunUI();

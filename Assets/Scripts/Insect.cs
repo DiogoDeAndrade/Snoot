@@ -37,6 +37,7 @@ public class Insect : MonoBehaviour
     void Update()
     {
         if (!spriteRenderer.enabled) return;
+        if (GameManager.instance.isPaused) return;
 
         float speed = wanderSpeed;
         float angularTolerance = 0.95f;
