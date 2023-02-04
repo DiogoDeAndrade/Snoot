@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public float radius = 128;
+
     // Start is called before the first frame update
     void Start()
     {

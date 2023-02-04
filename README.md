@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen07.png)
+![TitleImage](Screenshots/screen08.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -27,12 +27,16 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 2023/02/03 - 19:53: Water system
 ![Water](Screenshots/screen07.png)
 
+2023/02/04 - 11:00: UI for water, water effect and water generation
+![Water](Screenshots/screen08.png)
+
 ## License
 
 * All source code by Diogo Andrade is licensed under the MIT license.
 * [NaughtyAttributes] by Denis Rizov, available through the MIT license.
 * Soil texture by [FabooGuy], free to use (no explicit license)
 * Rock images by [FreeIconsPNG], free to use (no explicit license)
+* UI images from [FlatIcons] (no explicit license)
 
 ## Metadata
 
@@ -46,3 +50,4 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 [CC0]:https://creativecommons.org/publicdomain/zero/1.0/
 [FabooGuy]:https://www.deviantart.com/fabooguy
 [FreeIconsPNG]:https://www.freeiconspng.com/
+[FlatIcons]:http://www.flaticons.com

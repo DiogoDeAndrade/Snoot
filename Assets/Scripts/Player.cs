@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private    float       baseMoveSpeed = 200.0f;
-    [SerializeField] private    float       varianceMoveSpeed = 100.0f;
-    [SerializeField] private    float       baseRotateSpeed = 180.0f;
-    [SerializeField] private    float       baseThickness = 5.0f;
-    [SerializeField] private    float       varianceThickness = 5.0f;
-    [SerializeField] private    MeshFilter  bodyMeshFilter;
-    [SerializeField] private    MeshFilter  headMeshFilter;
-    [SerializeField] private    float       collisionRadius = 20.0f;
-    [SerializeField] private    Color       deathColor = Color.red;
-    [SerializeField] private    float       initialWater = 10;
-    [SerializeField] private    float       maxWater = 20;
-    [SerializeField] private    float       consumeWaterPerSecond = 0.5f;
+    [SerializeField] private    float           baseMoveSpeed = 200.0f;
+    [SerializeField] private    float           varianceMoveSpeed = 100.0f;
+    [SerializeField] private    float           baseRotateSpeed = 180.0f;
+    [SerializeField] private    float           baseThickness = 5.0f;
+    [SerializeField] private    float           varianceThickness = 5.0f;
+    [SerializeField] private    MeshFilter      bodyMeshFilter;
+    [SerializeField] private    MeshFilter      headMeshFilter;
+    [SerializeField] private    float           collisionRadius = 20.0f;
+    [SerializeField] private    Color           deathColor = Color.red;
+    [SerializeField] private    float           initialWater = 10;
+    [SerializeField] private    float           maxWater = 20;
+    [SerializeField] private    float           consumeWaterPerSecond = 0.5f;
+    [SerializeField] private    ParticleSystem  dirtPS;
+    [SerializeField] private    ParticleSystem  waterPS;
 
     private List<Vector3>   path;
     private Rigidbody2D     rb;
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
     private int             meshLastPoint;
     private float           distance;
     private float           water;
+
+    public float waterPercentage => water / maxWater;
 
     void Start()
     {
@@ -119,7 +123,7 @@ public class Player : MonoBehaviour
             Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
 
             float dp = Math.Abs(Vector3.Dot((path[i] - path[i - 1]).normalized, transform.up));
-            if (dp < 0.5f)
+            if (dp < 0.9f)
             {
                 float dist = (cPoint - transform.position).sqrMagnitude;
                 if (dist < tolerance)
@@ -295,6 +299,35 @@ public class Player : MonoBehaviour
         if (res != null)
         {
             res.Grab(this);
+
+            if (waterPS)
+            {
+                var emission = waterPS.emission;
+                emission.enabled = true;
+            }
+            if (dirtPS)
+            {
+                var emission = dirtPS.emission;
+                emission.enabled = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Resource res = collision.GetComponent<Resource>();
+        if (res != null)
+        {
+            if (waterPS)
+            {
+                var emission = waterPS.emission;
+                emission.enabled = false;
+            }
+            if (dirtPS)
+            {
+                var emission = dirtPS.emission;
+                emission.enabled = true;
+            }
         }
     }
 

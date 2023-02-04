@@ -103,3 +103,6 @@ MonoBehaviour:
   minMaxObstacles: {x: 3, y: 7}
   obstaclePrefabs:
   - {fileID: 8523168948787650966, guid: 9b4b3534d0b8eb44ca1c353278da44b4, type: 3}
+  minMaxWater: {x: 4, y: 7}
+  waterPrefabs:
+  - {fileID: 7838132144353975477, guid: db6abff6144a1304fb2349f1b1e01c18, type: 3}
