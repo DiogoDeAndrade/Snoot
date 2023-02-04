@@ -42,7 +42,7 @@ public class Insect : MonoBehaviour
                     playerAttacked.ChangeNutrition(-attackPower * Time.deltaTime);
                     if (alertIcon == null)
                     {
-                        alertIcon = HUDIconManager.AddIcon(alertImage, alertColor, transform, true);
+                        alertIcon = HUDIconManager.AddIcon(alertImage, alertColor, transform, 1.0f, true);
                     }
                 }
                 else if (dist > 50.0f)

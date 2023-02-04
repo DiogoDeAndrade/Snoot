@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     private bool                inWater;
     public  bool                playerControl = true;
     private float               autoRun = 0.0f;
+    private GameObject[]        mapNutrient;
 
     struct PrevBranch
     {
@@ -62,12 +63,7 @@ public class Player : MonoBehaviour
 
     private List<Nutrient.SequenceElem> nutrientSequence;
 
-    struct NutrientDistance
-    {
-        public Nutrient nutrient;
-        public float    dist;
-    }
-    
+   
     public float waterPercentage => water / maxWater;
     public float nutritionPercentage => nutrition / maxNutrition;
 
@@ -111,6 +107,8 @@ public class Player : MonoBehaviour
 
         water = initialWater;
         nutrition = initialNutrition;
+
+        mapNutrient = new GameObject[5];
     }
 
     void ActivePlayerControl()
@@ -219,25 +217,59 @@ public class Player : MonoBehaviour
                 var emission = glowPS.emission;
                 emission.enabled = glowActive;
             }
+
+            // Update map
+            var nutrients = Nutrient.GetSortedNutrientList(transform.position);
+
+            var nFound = new bool[5] { false, false, false, false, false };
+
+            foreach (var n in nutrients )
+            {
+                var idx = (int)n.nutrientType;
+                if (!nFound[idx])
+                { 
+                    nFound[idx] = true;
+                    if (mapNutrient[idx])
+                    {
+                        HUDIconManager.SetPos(mapNutrient[idx], n.transform);
+                    }
+                    else
+                    {
+                        mapNutrient[idx] = HUDIconManager.AddIcon(gameData.GetNutrientSprite(n.nutrientType), new Color(1.0f, 1.0f, 1.0f, 0.25f), n.transform, 4, false, false);
+                    }
+                }
+                bool allFound = true;
+                for (int i = 0; i < nFound.Length; i++)
+                {
+                    if (!nFound[i])
+                    {
+                        allFound = false;
+                        break;
+                    }
+                }
+                if (allFound) break;
+            }
+            for (int i = 0; i < nFound.Length; i++)
+            {
+                if (!nFound[i])
+                {
+                    if (mapNutrient[i] != null) HUDIconManager.RemoveIcon(mapNutrient[i]);
+                    mapNutrient[i] = null;
+                }
+            }
         }
     }
 
     void CreateSequence()
     {
-        var nutrients = FindObjectsOfType<Nutrient>();
-        if (nutrients.Length == 0) return;
+        var nutrients = Nutrient.GetSortedNutrientList(transform.position);
 
-        // Sort his list by distance
-        var sortedNutrients = new List<NutrientDistance>();
-        foreach (var n in nutrients) sortedNutrients.Add(new NutrientDistance { nutrient = n, dist = Vector3.Distance(transform.position, n.transform.position) });
-        sortedNutrients.Sort((n1, n2) => (n1.dist == n2.dist) ? (0) : ((n1.dist < n2.dist) ? (-1) : (1)));
-
-        int r = Random.Range(1, Mathf.Min(3, sortedNutrients.Count));
+        int r = Random.Range(1, Mathf.Min(3, nutrients.Count));
 
         nutrientSequence = new List<Nutrient.SequenceElem>();
         for (int i = 0; i < r; i++)
         {
-            nutrientSequence.Add(new Nutrient.SequenceElem { type = sortedNutrients[i].nutrient.nutrientType, caught = false });
+            nutrientSequence.Add(new Nutrient.SequenceElem { type = nutrients[i].nutrientType, caught = false });
         }
     }
 
@@ -406,6 +438,14 @@ public class Player : MonoBehaviour
     private void Die()
     {
         baseMoveSpeed = 0.0f;
+        for (int i = 0; i < mapNutrient.Length; i++)
+        {
+            if (mapNutrient[i])
+            {
+                HUDIconManager.DestroyObject(mapNutrient[i]);
+                mapNutrient[i] = null;
+            }
+        }
 
         if (!playerControl)
         {
