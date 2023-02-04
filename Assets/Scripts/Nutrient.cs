@@ -18,7 +18,7 @@ public class Nutrient : Resource
     public Type nutrientType => type;
 
 
-    public float radius => GetComponent<CircleCollider2D>().radius * transform.localScale.x;
+    public float radius => 16;
 
     override protected void UpdateVisual()
     {

@@ -12,6 +12,8 @@ public class MapArea : MonoBehaviour
     [SerializeField] private Obstacle[] obstaclePrefabs;
     [SerializeField] private Vector2Int minMaxWater = new Vector2Int(2, 4);
     [SerializeField] private Water[]    waterPrefabs;
+    [SerializeField] private Vector2Int minMaxNutrients = new Vector2Int(12, 16);
+    [SerializeField] private Nutrient[] nutrientPrefabs;
 
     struct Circle
     {
@@ -102,6 +104,50 @@ public class MapArea : MonoBehaviour
                     else
                     {
                         circles.Add(new Circle { pos = newWater.transform.position, radius = radius });
+                    }
+                }
+            }
+            if ((nutrientPrefabs != null) && (nutrientPrefabs.Length > 0))
+            {
+                int r = Mathf.FloorToInt(Random.Range(minMaxNutrients.x * invDifficulty, minMaxNutrients.y * invDifficulty));
+
+                for (int i = 0; i < r; i++)
+                {
+                    int w = Random.Range(0, nutrientPrefabs.Length);
+
+                    var newNutrient = Instantiate(nutrientPrefabs[w], transform);
+
+                    bool collision = true;
+                    int nTries = 0;
+                    Vector3 tryPos;
+                    float radius = newNutrient.radius;
+                    while ((collision) && (nTries++ < 20))
+                    {
+                        collision = false;
+
+                        tryPos = new Vector3(Random.Range(-MapAreaManager.areaHalfSize, MapAreaManager.areaHalfSize),
+                                             Random.Range(-MapAreaManager.areaHalfSize, MapAreaManager.areaHalfSize),
+                                             0.0f);
+
+                        foreach (var c in circles)
+                        {
+                            if (Vector3.Distance(c.pos, tryPos) < (radius + c.radius))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+
+                        newNutrient.transform.localPosition = tryPos;
+                    }
+
+                    if (collision)
+                    {
+                        Destroy(newNutrient);
+                    }
+                    else
+                    {
+                        circles.Add(new Circle { pos = newNutrient.transform.position, radius = radius });
                     }
                 }
             }

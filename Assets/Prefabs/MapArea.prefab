@@ -106,3 +106,10 @@ MonoBehaviour:
   minMaxWater: {x: 4, y: 7}
   waterPrefabs:
   - {fileID: 7838132144353975477, guid: db6abff6144a1304fb2349f1b1e01c18, type: 3}
+  minMaxNutrients: {x: 12, y: 16}
+  nutrientPrefabs:
+  - {fileID: 4475362255992168919, guid: 88992698dec633444adce67f0848f6fe, type: 3}
+  - {fileID: 7228821092455434517, guid: 8b194f52e711b4a47b6aacbc6e2dcda7, type: 3}
+  - {fileID: 554022031137850143, guid: dd2cc14e623d3ed4cbab809e787c9dfd, type: 3}
+  - {fileID: 954125850646268745, guid: 8f2d8cebc6d811d45b5e527b73f1b18b, type: 3}
+  - {fileID: 6593332330080101814, guid: b3061ea1d43eab7479b5ae78bfd6b276, type: 3}

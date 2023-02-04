@@ -18,11 +18,13 @@ public class Player : MonoBehaviour
     [SerializeField] private    float           consumeWaterPerSecond = 0.5f;
     [SerializeField] private    ParticleSystem  dirtPS;
     [SerializeField] private    ParticleSystem  waterPS;
+    [SerializeField] private    ParticleSystem  glowPS;
     [SerializeField] private    float           initialNutrition = 10;
     [SerializeField] private    float           maxNutrition = 20;
     [SerializeField] private    float           consumeNutritionPerSecond = 0.25f;
     [SerializeField] private    float           nutritionPerSequenceElem = 5.0f;
     [SerializeField] private    float           nutritionLoss = 5.0f;
+    [SerializeField] private    SpriteRenderer  headGlow;
 
     private List<Vector3>   path;
     private Rigidbody2D     rb;
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     private float           water;
     private float           nutrition;
     private float           lastSequenceComplete;
+    private bool            inWater;
 
     private List<Nutrient.SequenceElem> nutrientSequence;
 
@@ -100,6 +103,8 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         distance += rb.velocity.magnitude * Time.fixedDeltaTime;
+
+        inWater = false;
     }
 
     void Update()
@@ -136,6 +141,42 @@ public class Player : MonoBehaviour
         if ((nutrientSequence == null) && ((Time. time - lastSequenceComplete) > 1.0f))
         {
             CreateSequence();
+        }
+
+        if (headGlow)
+        {
+            float alpha = Mathf.Lerp(0.0f, 0.5f, 2.0f * ((nutrition/ maxNutrition) - 0.5f));
+
+            alpha = Mathf.Clamp01(alpha + 0.2f * Mathf.Cos(Time.time * 15.0f));
+
+            if (water <= 0) alpha = 0.0f;
+
+            headGlow.color = headGlow.color.ChangeAlpha(alpha);
+        }
+
+        bool waterActive = false;
+        bool dirtActive = false;
+        bool glowActive = false;
+
+        if ((nutrition / maxNutrition) > 0.5f) { glowActive = true; }
+
+        if (inWater) { waterActive = true; }
+        else { dirtActive = true; }
+
+        if (waterPS)
+        {
+            var emission = waterPS.emission;
+            emission.enabled = waterActive;
+        }
+        if (dirtPS)
+        {
+            var emission = dirtPS.emission;
+            emission.enabled = dirtActive;
+        }
+        if (glowPS)
+        {
+            var emission = glowPS.emission;
+            emission.enabled = glowActive;
         }
     }
 
@@ -395,40 +436,7 @@ public class Player : MonoBehaviour
         {
             res.Grab(this);
 
-            if (res.isWater)
-            {
-                if (waterPS)
-                {
-                    var emission = waterPS.emission;
-                    emission.enabled = true;
-                }
-                if (dirtPS)
-                {
-                    var emission = dirtPS.emission;
-                    emission.enabled = false;
-                }
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Resource res = collision.GetComponent<Resource>();
-        if (res != null)
-        {
-            if (res.isWater)
-            {
-                if (waterPS)
-                {
-                    var emission = waterPS.emission;
-                    emission.enabled = false;
-                }
-                if (dirtPS)
-                {
-                    var emission = dirtPS.emission;
-                    emission.enabled = true;
-                }
-            }
+            if (res.isWater) inWater = true;
         }
     }
 

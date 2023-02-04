@@ -16,7 +16,7 @@ public class SequenceUI : PlayerUI
 
         foreach (var item in nutrients)
         {
-            item.enabled = false;
+            item.gameObject.SetActive(false);
         }
         text.enabled = false;
     }
@@ -29,13 +29,13 @@ public class SequenceUI : PlayerUI
             text.enabled = true;
             for (int i = 0; i < seq.Count; i++)
             {
-                nutrients[i].enabled = true;
+                nutrients[i].gameObject.SetActive(true);
                 nutrients[i].sprite = gameData.GetNutrientSprite(seq[i].type);
                 nutrients[i].color = (seq[i].caught) ? (Color.gray) : (Color.white);
             }
             for (int i = seq.Count; i < nutrients.Length;  i++)
             {
-                nutrients[i].enabled = false;
+                nutrients[i].gameObject.SetActive(false);
             }
         }
         else
@@ -43,7 +43,7 @@ public class SequenceUI : PlayerUI
             text.enabled = false;
             foreach (var item in nutrients)
             {
-                item.enabled = false;
+                item.gameObject.SetActive(false);
             }
         }
     }
