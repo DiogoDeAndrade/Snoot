@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878772148688834091, guid: 88992698dec633444adce67f0848f6fe, type: 3}
       propertyPath: m_Name
-      value: Phosphorous
+      value: Phosphorous Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7878772148688834092, guid: 88992698dec633444adce67f0848f6fe, type: 3}
       propertyPath: m_RootOrder
@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0857754ab0fb9c940919efc776d33c22, type: 3}
+    - target: {fileID: 7878772150456405161, guid: 88992698dec633444adce67f0848f6fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7878772150456405161, guid: 88992698dec633444adce67f0848f6fe, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1

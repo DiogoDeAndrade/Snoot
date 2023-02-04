@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     [SerializeField] private    float           nutritionLossPerBadSequence = 5.0f;
     [SerializeField] private    float           nutritionLossPerEnemyHit = 5.0f;
     [SerializeField] private    float           nutritionLossPerBranch = 12.0f;
+    [SerializeField] private    float           nutritionLossPerLighting = 8.0f;
+    [SerializeField] private    Material        flashMaterial;
+    [SerializeField] private    Color           flashColor;
 
     private List<Vector3>   path = new List<Vector3>();
     private Rigidbody2D     rb;
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
     public  bool                playerControl = true;
     private float               autoRun = 0.0f;
     private GameObject[]        mapNutrient;
+    private Coroutine           flashCR;
 
     struct PrevBranch
     {
@@ -140,6 +144,24 @@ public class Player : MonoBehaviour
                 {
                     ChangeNutrition(-nutritionLossPerBranch);
                     Split();
+                }
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if ((flashCR == null) && (nutrition > nutritionLossPerLighting))
+                {
+                    var insects = FindObjectsOfType<Insect>(true);
+                    foreach (var insect in insects)
+                    {
+                        if (insect.isAttacking)
+                        {
+                            insect.Die();
+                        }
+                    }
+                    ChangeNutrition(-nutritionLossPerLighting);
+
+                    flashCR = StartCoroutine(LightningFlashCR());
                 }
             }
 
@@ -563,6 +585,28 @@ public class Player : MonoBehaviour
         }
 
         return Mathf.Sqrt(minDist);
+    }
+
+    IEnumerator LightningFlashCR()
+    {
+        MeshRenderer renderer = bodyMeshFilter.GetComponent<MeshRenderer>();
+        Material     originalMaterial = renderer.material;
+
+        renderer.material = flashMaterial;
+
+        float duration = 1.0f;
+        float timer = 0.0f;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            flashMaterial.SetColor("_EmissionColor", flashColor * 4 * (1.0f - (timer / duration)));
+
+            yield return null;
+        }
+
+        renderer.material = originalMaterial;
+        flashCR = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

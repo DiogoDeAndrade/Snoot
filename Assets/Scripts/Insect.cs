@@ -21,6 +21,8 @@ public class Insect : MonoBehaviour
         private SpriteRenderer  spriteRenderer;
     new private Collider2D      collider;
 
+    public bool isAttacking => alertIcon != null;
+
     // Start is called before the first frame update
     void Start()
     {
