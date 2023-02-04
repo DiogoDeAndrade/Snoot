@@ -4,30 +4,38 @@ using UnityEngine;
 
 public class Insect : MonoBehaviour
 {
-    [SerializeField] private float  wanderRadius = 400.0f;
-    [SerializeField] private float  detectRadius = 1000.0f;
-    [SerializeField] private float  wanderSpeed = 50.0f;
-    [SerializeField] private float  attackSpeed = 100.0f;
-    [SerializeField] private float  rotationSpeed = 90.0f;
-    [SerializeField] private float  attackPower = 1.0f;
-    [SerializeField] private Sprite alertImage;
-    [SerializeField] private Color  alertColor;
+    [SerializeField] private float          wanderRadius = 400.0f;
+    [SerializeField] private float          detectRadius = 1000.0f;
+    [SerializeField] private float          wanderSpeed = 50.0f;
+    [SerializeField] private float          attackSpeed = 100.0f;
+    [SerializeField] private float          rotationSpeed = 90.0f;
+    [SerializeField] private float          attackPower = 1.0f;
+    [SerializeField] private Sprite         alertImage;
+    [SerializeField] private Color          alertColor;
+    [SerializeField] private ParticleSystem deathPS;
 
-    private Vector3     spawnPos;
-    private Vector3     targetPos;
-    private Player      playerAttacked;
-    private GameObject  alertIcon;
+        private Vector3         spawnPos;
+        private Vector3         targetPos;
+        private Player          playerAttacked;
+        private GameObject      alertIcon;
+        private SpriteRenderer  spriteRenderer;
+    new private Collider2D      collider;
 
     // Start is called before the first frame update
     void Start()
     {
         spawnPos = transform.position;
         targetPos = transform.position;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!spriteRenderer.enabled) return;
+
         float speed = wanderSpeed;
         float angularTolerance = 0.95f;
 
@@ -120,6 +128,19 @@ public class Insect : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void Die()
+    {
+        spriteRenderer.enabled = false;
+        collider.enabled = false;
+        deathPS.Play();
+        if (alertIcon)
+        {
+            HUDIconManager.RemoveIcon(alertIcon);
+            alertIcon = null;
+        }
+        Destroy(gameObject, 4.0f);
     }
 
     private void OnDrawGizmosSelected()

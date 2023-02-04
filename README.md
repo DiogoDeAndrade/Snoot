@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen14.png)
+![TitleImage](Screenshots/screen15.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -47,6 +47,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 
 2023/02/04 - 18:08: Far nutrient display 
 ![Map](Screenshots/screen14.png)
+
+2023/02/04 - 19:10: Head kill
+![Bug Kill](Screenshots/screen15.png)
 
 ## License
 

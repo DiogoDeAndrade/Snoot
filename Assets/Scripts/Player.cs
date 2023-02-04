@@ -26,8 +26,9 @@ public class Player : MonoBehaviour
     [SerializeField] private    float           maxNutrition = 20;
     [SerializeField] private    float           consumeNutritionPerSecond = 0.25f;
     [SerializeField] private    float           nutritionPerSequenceElem = 5.0f;
-    [SerializeField] private    float           nutritionLoss = 5.0f;
-    [SerializeField] private    SpriteRenderer  headGlow;
+    [SerializeField] private    float           nutritionLossPerBadSequence = 5.0f;
+    [SerializeField] private    float           nutritionLossPerEnemyHit = 5.0f;
+    [SerializeField] private    float           nutritionLossPerBranch = 12.0f;
 
     private List<Vector3>   path = new List<Vector3>();
     private Rigidbody2D     rb;
@@ -135,10 +136,9 @@ public class Player : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                float splitCost = maxNutrition * 0.5f;
-                if (nutrition > splitCost)
+                if (nutrition > nutritionLossPerBranch)
                 {
-                    ChangeNutrition(-splitCost);
+                    ChangeNutrition(-nutritionLossPerBranch);
                     Split();
                 }
             }
@@ -182,22 +182,11 @@ public class Player : MonoBehaviour
                 CreateSequence();
             }
 
-            if (headGlow)
-            {
-                float alpha = Mathf.Lerp(0.0f, 0.5f, 2.0f * ((nutrition / maxNutrition) - 0.5f));
-
-                alpha = Mathf.Clamp01(alpha + 0.2f * Mathf.Cos(Time.time * 15.0f));
-
-                if (water <= 0) alpha = 0.0f;
-
-                headGlow.color = headGlow.color.ChangeAlpha(alpha);
-            }
-
             bool waterActive = false;
             bool dirtActive = false;
             bool glowActive = false;
 
-            if ((nutrition / maxNutrition) > 0.5f) { glowActive = true; }
+            if (nutrition > nutritionLossPerEnemyHit) { glowActive = true; }
 
             if (inWater) { waterActive = true; }
             else { dirtActive = true; }
@@ -442,7 +431,7 @@ public class Player : MonoBehaviour
         {
             if (mapNutrient[i])
             {
-                HUDIconManager.DestroyObject(mapNutrient[i]);
+                HUDIconManager.RemoveIcon(mapNutrient[i]);
                 mapNutrient[i] = null;
             }
         }
@@ -519,10 +508,10 @@ public class Player : MonoBehaviour
                 lastSequenceComplete = Time.time;
             }
         }
-        else
+        else 
         {
             // Loose nutrition
-            ChangeNutrition(-nutritionLoss);
+            ChangeNutrition(-nutritionLossPerBadSequence);
 
             nutrientSequence = null;
             lastSequenceComplete = Time.time;
@@ -583,6 +572,21 @@ public class Player : MonoBehaviour
         {
             // Die!
             Die();
+        }
+        Insect insect = collision.GetComponent<Insect>();
+        if (insect != null)
+        {
+            if (nutrition> nutritionLossPerEnemyHit)
+            {
+                // Kill enemy
+                ChangeNutrition(-nutritionLossPerEnemyHit);
+                insect.Die();
+            }
+            else
+            {
+                // Just die
+                Die();
+            }
         }
     }
 
