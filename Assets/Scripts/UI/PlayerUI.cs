@@ -15,6 +15,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (player == null) FindPlayer();
         if (!player.isActiveAndEnabled) FindPlayer();
+        if (!player.playerControl) FindPlayer();
         
         if (player != null)
         {
@@ -29,6 +30,14 @@ public class PlayerUI : MonoBehaviour
 
     void FindPlayer()
     {
-        player = FindObjectOfType<Player>();
+        var players = FindObjectsOfType<Player>();
+        foreach (var p in players)
+        {
+            if ((p.isActiveAndEnabled) && (p.playerControl))
+            {
+                player = p;
+                break;
+            }
+        }
     }
 }

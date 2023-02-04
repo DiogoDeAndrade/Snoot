@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private    GameData        gameData;
+    [SerializeField] private    float           startupRunHead = 0.0f;
     [SerializeField] private    float           baseMoveSpeed = 200.0f;
     [SerializeField] private    float           varianceMoveSpeed = 100.0f;
     [SerializeField] private    float           baseRotateSpeed = 180.0f;
@@ -26,12 +29,12 @@ public class Player : MonoBehaviour
     [SerializeField] private    float           nutritionLoss = 5.0f;
     [SerializeField] private    SpriteRenderer  headGlow;
 
-    private List<Vector3>   path;
+    private List<Vector3>   path = new List<Vector3>();
     private Rigidbody2D     rb;
     private Mesh            bodyMesh;
-    private List<Vector3>   bodyVertices;
-    private List<Vector2>   bodyUV;
-    private List<int>       bodyTriangles;
+    private List<Vector3>   bodyVertices = new List<Vector3>();
+    private List<Vector2>   bodyUV = new List<Vector2>();
+    private List<int>       bodyTriangles = new List<int>();
     private Mesh            headMesh;
     private List<Vector3>   headVertices;
     private List<Vector2>   headUV;
@@ -40,13 +43,22 @@ public class Player : MonoBehaviour
     private float           lastPointInsertedTime;
     private Vector3         lastPointInsertedDirection;
     private int             lastPointInsertedIndex;
-    private int             meshLastPoint;
     private float           distance;
 
-    private float           water;
-    private float           nutrition;
-    private float           lastSequenceComplete;
-    private bool            inWater;
+    private float               water;
+    private float               nutrition;
+    private float               lastSequenceComplete;
+    private bool                inWater;
+    public  bool                playerControl = true;
+    private float               autoRun = 0.0f;
+
+    struct PrevBranch
+    {
+        public GameObject player;
+        public int        pathIndex;
+    }
+
+    private List<GameObject>   prevBranches = new List<GameObject>();
 
     private List<Nutrient.SequenceElem> nutrientSequence;
 
@@ -61,15 +73,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        path = new List<Vector3>();
-        
         bodyMesh = new Mesh();
         bodyMesh.name = "RootBody";
         bodyMeshFilter.mesh = bodyMesh;
-
-        bodyVertices = new List<Vector3>();
-        bodyTriangles = new List<int>();
-        bodyUV = new List<Vector2>();
 
         headMesh = new Mesh();
         headMesh.name = "RootHead";
@@ -91,13 +97,25 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Run a second of head
-        UpdateRoot();
-        transform.position = transform.up * baseMoveSpeed;
-        distance = baseMoveSpeed;
-        UpdateRoot();
+        if (startupRunHead > 0)
+        {
+            if (playerControl)
+            {
+                // Restore player control after a bit
+                Invoke("ActivePlayerControl", startupRunHead);
+            }
+            
+            autoRun = startupRunHead;
+            playerControl = false;
+        }
 
         water = initialWater;
         nutrition = initialNutrition;
+    }
+
+    void ActivePlayerControl()
+    {
+        playerControl = true;
     }
 
     private void FixedUpdate()
@@ -109,7 +127,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (baseMoveSpeed > 0)
+        if (playerControl)
         {
             float rotation = Input.GetAxis("Horizontal");
 
@@ -117,15 +135,38 @@ public class Player : MonoBehaviour
 
             rb.velocity = transform.up * (baseMoveSpeed + varianceMoveSpeed * (((water / maxWater) - 0.5f) * 2.0f));
 
+            if (Input.GetButtonDown("Jump"))
+            {
+                float splitCost = maxNutrition * 0.5f;
+                if (nutrition > splitCost)
+                {
+                    ChangeNutrition(-splitCost);
+                    Split();
+                }
+            }
+
             UpdateRoot();
             DetectSelfIntersection();
         }
         else
         {
-            rb.velocity = Vector2.zero;
+            if (autoRun > 0)
+            {
+                autoRun -= Time.deltaTime;
+
+                rb.velocity = transform.up * (baseMoveSpeed + varianceMoveSpeed * (((water / maxWater) - 0.5f) * 2.0f));
+
+                UpdateRoot();
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
+
         }
-        if (baseMoveSpeed > 0)
-        { 
+
+        if (playerControl)
+        {
             ChangeWater(-consumeWaterPerSecond * Time.deltaTime);
             if (water <= 0.0f)
             {
@@ -136,47 +177,48 @@ public class Player : MonoBehaviour
             {
                 Die();
             }
-        }
 
-        if ((nutrientSequence == null) && ((Time. time - lastSequenceComplete) > 1.0f))
-        {
-            CreateSequence();
-        }
 
-        if (headGlow)
-        {
-            float alpha = Mathf.Lerp(0.0f, 0.5f, 2.0f * ((nutrition/ maxNutrition) - 0.5f));
+            if ((nutrientSequence == null) && ((Time.time - lastSequenceComplete) > 1.0f))
+            {
+                CreateSequence();
+            }
 
-            alpha = Mathf.Clamp01(alpha + 0.2f * Mathf.Cos(Time.time * 15.0f));
+            if (headGlow)
+            {
+                float alpha = Mathf.Lerp(0.0f, 0.5f, 2.0f * ((nutrition / maxNutrition) - 0.5f));
 
-            if (water <= 0) alpha = 0.0f;
+                alpha = Mathf.Clamp01(alpha + 0.2f * Mathf.Cos(Time.time * 15.0f));
 
-            headGlow.color = headGlow.color.ChangeAlpha(alpha);
-        }
+                if (water <= 0) alpha = 0.0f;
 
-        bool waterActive = false;
-        bool dirtActive = false;
-        bool glowActive = false;
+                headGlow.color = headGlow.color.ChangeAlpha(alpha);
+            }
 
-        if ((nutrition / maxNutrition) > 0.5f) { glowActive = true; }
+            bool waterActive = false;
+            bool dirtActive = false;
+            bool glowActive = false;
 
-        if (inWater) { waterActive = true; }
-        else { dirtActive = true; }
+            if ((nutrition / maxNutrition) > 0.5f) { glowActive = true; }
 
-        if (waterPS)
-        {
-            var emission = waterPS.emission;
-            emission.enabled = waterActive;
-        }
-        if (dirtPS)
-        {
-            var emission = dirtPS.emission;
-            emission.enabled = dirtActive;
-        }
-        if (glowPS)
-        {
-            var emission = glowPS.emission;
-            emission.enabled = glowActive;
+            if (inWater) { waterActive = true; }
+            else { dirtActive = true; }
+
+            if (waterPS)
+            {
+                var emission = waterPS.emission;
+                emission.enabled = waterActive;
+            }
+            if (dirtPS)
+            {
+                var emission = dirtPS.emission;
+                emission.enabled = dirtActive;
+            }
+            if (glowPS)
+            {
+                var emission = glowPS.emission;
+                emission.enabled = glowActive;
+            }
         }
     }
 
@@ -364,6 +406,34 @@ public class Player : MonoBehaviour
     private void Die()
     {
         baseMoveSpeed = 0.0f;
+
+        if (!playerControl)
+        {
+            prevBranches.RemoveAll((e) => e == transform.parent.gameObject);
+        }
+        else
+        {
+            playerControl = false;
+
+            // Pass player control to previous branch
+            if (prevBranches.Count > 0)
+            {
+                GameObject pb = prevBranches[prevBranches.Count - 1];
+                prevBranches.RemoveAt(prevBranches.Count - 1);
+                var branchPlayer = pb.GetComponentInChildren<Player>();
+                branchPlayer.Invoke("ActivePlayerControl", 1.0f);
+                var camera = FindObjectOfType<Camera>();
+                if (camera != null)
+                {
+                    var follow = camera.GetComponent<CameraFollow>();
+                    if (follow)
+                    {
+                        follow.targetObject = branchPlayer.transform;
+                    }
+                }
+                transform.parent.position = new Vector3(0, 0, 0.1f);
+            }
+        }
         StartCoroutine(ShrinkRootCR());
     }
 
@@ -417,6 +487,33 @@ public class Player : MonoBehaviour
             nutrientSequence = null;
             lastSequenceComplete = Time.time;
         }
+    }
+
+    void Split()
+    {
+        float rot = -1.0f;
+        if (Random.Range(0, 100) < 50) rot = 1.0f;
+
+        // Create new player at this position, pointint 30 degrees clockwise
+        var newPlayer = Instantiate(gameData.playerPrefab, Vector3.zero, Quaternion.identity);
+        var newPlayerComponent = newPlayer.GetComponentInChildren<Player>();
+        newPlayerComponent.transform.position = transform.position;
+        newPlayerComponent.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, rot * Random.Range(40, 80));
+        newPlayerComponent.playerControl = false;
+        // Copy path
+        newPlayerComponent.path = new List<Vector3>(path);
+        newPlayerComponent.bodyVertices = new List<Vector3>(bodyVertices);
+        newPlayerComponent.bodyTriangles = new List<int>(bodyTriangles);
+        newPlayerComponent.bodyUV = new List<Vector2>(bodyUV);
+        newPlayerComponent.lastPointInsertedDirection = lastPointInsertedDirection;
+        newPlayerComponent.lastPointInsertedTime = lastPointInsertedTime;
+        newPlayerComponent.lastPointInsertedIndex = lastPointInsertedIndex;
+        newPlayerComponent.prevBranches = prevBranches;
+
+        newPlayerComponent.water = water;
+        newPlayerComponent.nutrition = nutrition;
+
+        newPlayerComponent.prevBranches.Add(newPlayer);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

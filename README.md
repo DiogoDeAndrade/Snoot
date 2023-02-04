@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen10.png)
+![TitleImage](Screenshots/screen11.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -35,6 +35,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 
 2023/02/04 - 14:17: Nutrient generation and glowing head
 ![Glow head](Screenshots/screen10.png)
+
+2023/02/04 - 15:40: Branching system and checkpoint
+![Branches](Screenshots/screen11.png)
 
 ## License
 

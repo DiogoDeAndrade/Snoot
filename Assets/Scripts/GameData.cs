@@ -13,7 +13,8 @@ public class GameData : ScriptableObject
         public GameObject      prefab;
     }
 
-    [SerializeField] private NutrientDataElem[]  nutrients;
+    [SerializeField] private NutrientDataElem[] nutrients;
+                     public  GameObject         playerPrefab;
 
     public Sprite GetNutrientSprite(Nutrient.Type type)
     {
