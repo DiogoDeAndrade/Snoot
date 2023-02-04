@@ -40,8 +40,8 @@ public class MapAreaManager : MonoBehaviour
     void Update()
     {
         Vector2 cameraPos = gameCamera.transform.position;
-        Vector2 min = cameraPos - new Vector2(cameraWidth * 0.5f, cameraHeight * 0.5f);
-        Vector2 max = cameraPos + new Vector2(cameraWidth * 0.5f, cameraHeight * 0.5f);
+        Vector2 min = cameraPos - new Vector2(cameraWidth, cameraHeight);
+        Vector2 max = cameraPos + new Vector2(cameraWidth, cameraHeight);
 
         Vector2Int gridMin = ToGrid(min);
         Vector2Int gridMax = ToGrid(max);

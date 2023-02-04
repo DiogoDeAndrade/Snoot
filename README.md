@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen11.png)
+![TitleImage](Screenshots/screen12.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -39,12 +39,16 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 2023/02/04 - 15:40: Branching system and checkpoint
 ![Branches](Screenshots/screen11.png)
 
+2023/02/04 - 16:49: Insects
+![Insects](Screenshots/screen12.png)
+
 ## License
 
 * All source code by Diogo Andrade is licensed under the MIT license.
 * [NaughtyAttributes] by Denis Rizov, available through the MIT license.
 * Soil texture by [FabooGuy], free to use (no explicit license)
 * Rock images by [FreeIconsPNG], free to use (no explicit license)
+* Beetle image by [FreeIconsPNG], free to use (no explicit license)
 * UI images from [FlatIcons] (no explicit license)
 
 ## Metadata

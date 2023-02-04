@@ -516,6 +516,26 @@ public class Player : MonoBehaviour
         newPlayerComponent.prevBranches.Add(newPlayer);
     }
 
+    public float GetClosestPoint(Vector3 pos, out Vector3 closestPoint)
+    {
+        float minDist = float.MaxValue;
+        closestPoint = new Vector3(float.MaxValue, float.MaxValue, 0);
+
+        for (int i = 1; i < path.Count; i++)
+        {
+            Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
+
+            float dist = (cPoint - transform.position).sqrMagnitude;
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closestPoint = cPoint;
+            }
+        }
+
+        return minDist;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Obstacle obstacle = collision.GetComponent<Obstacle>();
