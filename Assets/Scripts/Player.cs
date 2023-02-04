@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +18,11 @@ public class Player : MonoBehaviour
     [SerializeField] private    float           consumeWaterPerSecond = 0.5f;
     [SerializeField] private    ParticleSystem  dirtPS;
     [SerializeField] private    ParticleSystem  waterPS;
+    [SerializeField] private    float           initialNutrition = 10;
+    [SerializeField] private    float           maxNutrition = 20;
+    [SerializeField] private    float           consumeNutritionPerSecond = 0.25f;
+    [SerializeField] private    float           nutritionPerSequenceElem = 5.0f;
+    [SerializeField] private    float           nutritionLoss = 5.0f;
 
     private List<Vector3>   path;
     private Rigidbody2D     rb;
@@ -36,9 +40,21 @@ public class Player : MonoBehaviour
     private int             lastPointInsertedIndex;
     private int             meshLastPoint;
     private float           distance;
-    private float           water;
 
+    private float           water;
+    private float           nutrition;
+    private float           lastSequenceComplete;
+
+    private List<Nutrient.SequenceElem> nutrientSequence;
+
+    struct NutrientDistance
+    {
+        public Nutrient nutrient;
+        public float    dist;
+    }
+    
     public float waterPercentage => water / maxWater;
+    public float nutritionPercentage => nutrition / maxNutrition;
 
     void Start()
     {
@@ -78,6 +94,7 @@ public class Player : MonoBehaviour
         UpdateRoot();
 
         water = initialWater;
+        nutrition = initialNutrition;
     }
 
     private void FixedUpdate()
@@ -109,8 +126,39 @@ public class Player : MonoBehaviour
             {
                 Die();
             }
+            ChangeNutrition(-consumeNutritionPerSecond * Time.deltaTime);
+            if (nutrition <= 0.0f)
+            {
+                Die();
+            }
+        }
+
+        if ((nutrientSequence == null) && ((Time. time - lastSequenceComplete) > 1.0f))
+        {
+            CreateSequence();
         }
     }
+
+    void CreateSequence()
+    {
+        var nutrients = FindObjectsOfType<Nutrient>();
+        if (nutrients.Length == 0) return;
+
+        // Sort his list by distance
+        var sortedNutrients = new List<NutrientDistance>();
+        foreach (var n in nutrients) sortedNutrients.Add(new NutrientDistance { nutrient = n, dist = Vector3.Distance(transform.position, n.transform.position) });
+        sortedNutrients.Sort((n1, n2) => (n1.dist == n2.dist) ? (0) : ((n1.dist < n2.dist) ? (-1) : (1)));
+
+        int r = Random.Range(1, Mathf.Min(3, sortedNutrients.Count));
+
+        nutrientSequence = new List<Nutrient.SequenceElem>();
+        for (int i = 0; i < r; i++)
+        {
+            nutrientSequence.Add(new Nutrient.SequenceElem { type = sortedNutrients[i].nutrient.nutrientType, caught = false });
+        }
+    }
+
+    public List<Nutrient.SequenceElem> GetNutrientSequence() => nutrientSequence;
 
     void DetectSelfIntersection()
     {
@@ -122,7 +170,7 @@ public class Player : MonoBehaviour
         {
             Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
 
-            float dp = Math.Abs(Vector3.Dot((path[i] - path[i - 1]).normalized, transform.up));
+            float dp = Mathf.Abs(Vector3.Dot((path[i] - path[i - 1]).normalized, transform.up));
             if (dp < 0.9f)
             {
                 float dist = (cPoint - transform.position).sqrMagnitude;
@@ -280,7 +328,54 @@ public class Player : MonoBehaviour
 
     public void ChangeWater(float delta)
     {
-        water = Mathf.Clamp(water + delta, 0.0f, 20.0f);
+        water = Mathf.Clamp(water + delta, 0.0f, maxWater);
+    }
+
+    public void ChangeNutrition(float delta)
+    {
+        nutrition = Mathf.Clamp(nutrition + delta, 0.0f, maxNutrition);
+    }
+
+    public void AddToSequence(Nutrient.Type type)
+    {
+        bool inSequence = false;
+        foreach (var n in nutrientSequence)
+        {
+            if ((n.type == type) && (!n.caught))
+            {
+                n.caught = true;
+                inSequence = true;
+                break;
+            }
+        }
+        if (inSequence)
+        {
+            bool sequenceComplete = true;
+            foreach (var s in nutrientSequence)
+            {
+                if (!s.caught)
+                {
+                    sequenceComplete = false;
+                    break;
+                }
+            }
+            if (sequenceComplete)
+            {
+                // Get nutrition
+                ChangeNutrition(nutrientSequence.Count * nutritionPerSequenceElem);
+
+                nutrientSequence = null;
+                lastSequenceComplete = Time.time;
+            }
+        }
+        else
+        {
+            // Loose nutrition
+            ChangeNutrition(-nutritionLoss);
+
+            nutrientSequence = null;
+            lastSequenceComplete = Time.time;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

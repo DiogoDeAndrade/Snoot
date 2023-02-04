@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen08.png)
+![TitleImage](Screenshots/screen09.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -28,7 +28,10 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 ![Water](Screenshots/screen07.png)
 
 2023/02/04 - 11:00: UI for water, water effect and water generation
-![Water](Screenshots/screen08.png)
+![UI](Screenshots/screen08.png)
+
+2023/02/04 - 11:00: Nutrient system
+![Nutrient system](Screenshots/screen09.png)
 
 ## License
 

@@ -6,7 +6,17 @@ public class Nutrient : Resource
 {
     public enum Type { Hydrogen, Oxygen, Nitrogen, Phosphorous, Potassium };
 
+    public class SequenceElem
+    {
+        public Type type;
+        public bool caught;
+    };
+
+
     [SerializeField] private Type type;
+
+    public Type nutrientType => type;
+
 
     public float radius => GetComponent<CircleCollider2D>().radius * transform.localScale.x;
 
@@ -17,7 +27,7 @@ public class Nutrient : Resource
 
     override protected void OnGrab(Player player, float delta)
     {
-        
+        player.AddToSequence(type);
     }
 
 }

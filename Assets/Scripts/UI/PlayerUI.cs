@@ -6,7 +6,7 @@ public class PlayerUI : MonoBehaviour
 {
     protected Player player;
 
-    void Start()
+    virtual protected void Start()
     {
         FindPlayer();
     }
