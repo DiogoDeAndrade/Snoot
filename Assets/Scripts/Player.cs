@@ -300,15 +300,18 @@ public class Player : MonoBehaviour
         {
             res.Grab(this);
 
-            if (waterPS)
+            if (res.isWater)
             {
-                var emission = waterPS.emission;
-                emission.enabled = true;
-            }
-            if (dirtPS)
-            {
-                var emission = dirtPS.emission;
-                emission.enabled = false;
+                if (waterPS)
+                {
+                    var emission = waterPS.emission;
+                    emission.enabled = true;
+                }
+                if (dirtPS)
+                {
+                    var emission = dirtPS.emission;
+                    emission.enabled = false;
+                }
             }
         }
     }
@@ -318,15 +321,18 @@ public class Player : MonoBehaviour
         Resource res = collision.GetComponent<Resource>();
         if (res != null)
         {
-            if (waterPS)
+            if (res.isWater)
             {
-                var emission = waterPS.emission;
-                emission.enabled = false;
-            }
-            if (dirtPS)
-            {
-                var emission = dirtPS.emission;
-                emission.enabled = true;
+                if (waterPS)
+                {
+                    var emission = waterPS.emission;
+                    emission.enabled = false;
+                }
+                if (dirtPS)
+                {
+                    var emission = dirtPS.emission;
+                    emission.enabled = true;
+                }
             }
         }
     }

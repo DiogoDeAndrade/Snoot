@@ -12,6 +12,7 @@ public class Resource : MonoBehaviour
     protected SpriteRenderer    spriteRenderer;
     protected Color             initialSpriteColor;
 
+    virtual public bool isWater => false;
 
     virtual protected void Start()
     {

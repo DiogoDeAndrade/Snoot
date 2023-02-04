@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Water : Resource
+public class Nutrient : Resource
 {
-    public float radius => GetComponent<CircleCollider2D>().radius * transform.localScale.x;
+    public enum Type { Hydrogen, Oxygen, Nitrogen, Phosphorous, Potassium };
 
-    override public bool isWater => true;
+    [SerializeField] private Type type;
+
+    public float radius => GetComponent<CircleCollider2D>().radius * transform.localScale.x;
 
     override protected void UpdateVisual()
     {
@@ -15,7 +17,7 @@ public class Water : Resource
 
     override protected void OnGrab(Player player, float delta)
     {
-        player.ChangeWater(delta);
+        
     }
 
 }
