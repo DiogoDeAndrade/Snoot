@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Insect : MonoBehaviour
 {
-    [SerializeField] private float wanderRadius = 400.0f;
-    [SerializeField] private float detectRadius = 1000.0f;
-    [SerializeField] private float wanderSpeed = 50.0f;
-    [SerializeField] private float attackSpeed = 100.0f;
-    [SerializeField] private float rotationSpeed = 90.0f;
-    [SerializeField] private float attackPower = 1.0f;
+    [SerializeField] private float  wanderRadius = 400.0f;
+    [SerializeField] private float  detectRadius = 1000.0f;
+    [SerializeField] private float  wanderSpeed = 50.0f;
+    [SerializeField] private float  attackSpeed = 100.0f;
+    [SerializeField] private float  rotationSpeed = 90.0f;
+    [SerializeField] private float  attackPower = 1.0f;
+    [SerializeField] private Sprite alertImage;
+    [SerializeField] private Color  alertColor;
 
-    private Vector3 spawnPos;
-    private Vector3 targetPos;
-    private Player  playerAttacked;
+    private Vector3     spawnPos;
+    private Vector3     targetPos;
+    private Player      playerAttacked;
+    private GameObject  alertIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -26,23 +29,40 @@ public class Insect : MonoBehaviour
     void Update()
     {
         float speed = wanderSpeed;
+        float angularTolerance = 0.95f;
 
         if (playerAttacked)
         {
             if (playerAttacked.playerControl)
             {
-                if (Vector3.Distance(transform.position, targetPos) < 1.0f)
+                float dist = Vector3.Distance(transform.position, targetPos);
+                if (dist < 1.0f)
                 {
                     // Attack root
                     playerAttacked.ChangeNutrition(-attackPower * Time.deltaTime);
+                    if (alertIcon == null)
+                    {
+                        alertIcon = HUDIconManager.AddIcon(alertImage, alertColor, transform, true);
+                    }
+                }
+                else if (dist > 50.0f)
+                {
+                    if (Random.Range(0.0f, 1.0f) < 0.05f)
+                    {
+                        playerAttacked.GetClosestPoint(transform.position, out targetPos);
+                        targetPos = targetPos + (transform.position - targetPos).normalized * 60;
+                    }
                 }
 
                 speed = attackSpeed;
+                angularTolerance = 0.5f;
             }
             else
             {
                 targetPos = spawnPos + Random.insideUnitCircle.xy0() * Random.Range(0.0f, wanderRadius);
                 playerAttacked = null;
+                HUDIconManager.RemoveIcon(alertIcon);
+                alertIcon = null;
             }
         }
         else
@@ -78,7 +98,7 @@ public class Insect : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, toTarget), rotationSpeed * Time.deltaTime);
 
             float dp = Vector3.Dot(toTarget, transform.up);
-            if (dp > 0.95f)
+            if (dp > angularTolerance)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
@@ -108,5 +128,11 @@ public class Insect : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, wanderRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectRadius);
+
+        if (playerAttacked)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(transform.position, targetPos);
+        }
     }
 }

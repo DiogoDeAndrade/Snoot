@@ -523,9 +523,9 @@ public class Player : MonoBehaviour
 
         for (int i = 1; i < path.Count; i++)
         {
-            Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], transform.position);
+            Vector3 cPoint = Line.GetClosestPoint(path[i - 1], path[i], pos);
 
-            float dist = (cPoint - transform.position).sqrMagnitude;
+            float dist = (cPoint - pos).sqrMagnitude;
             if (dist < minDist)
             {
                 minDist = dist;
@@ -533,7 +533,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        return minDist;
+        return Mathf.Sqrt(minDist);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen12.png)
+![TitleImage](Screenshots/screen13.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -41,6 +41,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 
 2023/02/04 - 16:49: Insects
 ![Insects](Screenshots/screen12.png)
+
+2023/02/04 - 18:08: HUD icons
+![HUD](Screenshots/screen13.png)
 
 ## License
 
