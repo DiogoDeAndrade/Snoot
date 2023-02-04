@@ -28,3 +28,4 @@ MonoBehaviour:
   - type: 4
     sprite: {fileID: 21300000, guid: d1f9a04954c19ab439220e0d1a58083b, type: 3}
     prefab: {fileID: 634043370482272842, guid: b3061ea1d43eab7479b5ae78bfd6b276, type: 3}
+  playerPrefab: {fileID: 2563958137223685711, guid: b1c8ac527923e59408573e11a61be06a, type: 3}
