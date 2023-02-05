@@ -53,13 +53,20 @@ public class HUDIconManager : MonoBehaviour
             }
             else
             {
-                if (icon.blink)
-                {
-                    icon.spriteRenderer.color = (icon.color + icon.color * 0.25f * Mathf.Cos(Time.time * 10.0f)).Clamp().ChangeAlpha(icon.color.a);
-                }
                 if (player == null)
                 {
                     icon.spriteRenderer.color = icon.spriteRenderer.color.ChangeAlpha(0.0f);
+                }
+                else
+                {
+                    if (icon.blink)
+                    {
+                        icon.spriteRenderer.color = (icon.color + icon.color * 0.25f * Mathf.Cos(Time.time * 10.0f)).Clamp().ChangeAlpha(icon.color.a);
+                    }
+                    else
+                    {
+                        icon.spriteRenderer.color = icon.color;
+                    }
                 }
                 UpdateIconPosition(icon);
             }

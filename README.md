@@ -69,6 +69,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 2023/02/05 - 12:05: Bounds, surface display, level intro
 ![Level Intro](Screenshots/screen21.png)
 
+2023/02/05 - 12:05: Music added
+![Music](Screenshots/screen21.png)
+
 ## License
 
 * All source code by Diogo Andrade is licensed under the MIT license.
