@@ -5,13 +5,18 @@ using NaughtyAttributes;
 
 public class Crystal : MonoBehaviour
 {
+    [SerializeField]
+    private Color   iconColor = Color.white;
+    [SerializeField]
+    private Sprite  iconSprite;
+
+    public Sprite image;
     [ResizableTextArea]
     public string text;
-    public Sprite image;
 
     void Start()
     {
-        
+        HUDIconManager.AddIcon(iconSprite, iconColor, transform, 1.0f, false, false);
     }
 
     // Update is called once per frame

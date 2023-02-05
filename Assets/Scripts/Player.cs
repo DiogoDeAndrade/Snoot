@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
    
     public float waterPercentage => water / maxWater;
     public float nutritionPercentage => nutrition / maxNutrition;
+    public bool canBranch => nutrition >= nutritionLossPerBranch;
+    public bool canLightning => nutrition >= nutritionLossPerLighting;
 
     void Start()
     {

@@ -148,9 +148,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4838545}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 0.75000006, y: 0.75000006, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 894939391}
@@ -159,12 +159,12 @@ RectTransform:
   - {fileID: 149404061}
   - {fileID: 1088784277}
   - {fileID: 1089696861}
-  m_Father: {fileID: 888863792}
+  m_Father: {fileID: 1660062810}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 81, y: -80}
+  m_AnchoredPosition: {x: -509.00006, y: 230.09644}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4838547
@@ -646,7 +646,7 @@ RectTransform:
   - {fileID: 693114868}
   - {fileID: 950151443}
   m_Father: {fileID: 888863792}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -934,6 +934,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconPrefab: {fileID: 6217901172620743485, guid: 5a0777702398dac48a70ad8fb73270de, type: 3}
   iconHolder: {fileID: 75620597}
+--- !u!1 &534457960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 534457961}
+  - component: {fileID: 534457963}
+  - component: {fileID: 534457962}
+  m_Layer: 5
+  m_Name: Branch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &534457961
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534457960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1834592572}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 47, y: 20}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &534457962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534457960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.111739054, g: 0.764151, b: 0.19339958, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 54c9a1a0fe058de4fa90e5464183659b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &534457963
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534457960}
+  m_CullTransparentMesh: 1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,40 +1341,39 @@ MonoBehaviour:
 
     A peaceful sight to the eye.
 
-    
 
-    Their leaves rustle in
-    the breeze,
 
-    A symphony of sound.
+    Their leaves rustle in the breeze,
+
+    A
+    symphony of sound.
 
     Their branches, a home for birds,
 
-    Welcoming
-    all around.
+    Welcoming all
+    around.
 
-    
+
 
     With roots deep in the earth,
 
-    They stand strong
-    and bold.
+    They stand strong and bold.
 
-    Providing shade and fresh air,
+    Providing
+    shade and fresh air,
 
     A story to be told.
 
-    
 
-    So
-    here''s to the trees,
 
-    A gift from above.
+    So here''s to the trees,
+
+    A
+    gift from above.
 
     May they continue to grow,
 
-    Filled
-    with life and love.'
+    Filled with life and love.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e09ba9892d8fdc642a0d2ab45f142bc0, type: 2}
   m_sharedMaterial: {fileID: -2079188821595380543, guid: e09ba9892d8fdc642a0d2ab45f142bc0, type: 2}
@@ -1467,9 +1542,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1418709859}
-  - {fileID: 1834592572}
-  - {fileID: 4838546}
+  - {fileID: 1660062810}
   - {fileID: 429655478}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -7031,18 +7104,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418709858}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 663214780}
-  m_Father: {fileID: 888863792}
+  m_Father: {fileID: 1660062810}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchoredPosition: {x: -580.00006, y: 300.0964}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1418709860
@@ -7215,6 +7288,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499612513}
+  m_CullTransparentMesh: 1
+--- !u!1 &1529285179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1529285180}
+  - component: {fileID: 1529285182}
+  - component: {fileID: 1529285181}
+  m_Layer: 5
+  m_Name: Lightning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1529285180
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529285179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1834592572}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 47, y: -8}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1529285181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529285179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.25729796, g: 0.9245283, b: 0.81453997, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 9ac7a3bd379b5ea4094344e4d027e92b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1529285182
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529285179}
   m_CullTransparentMesh: 1
 --- !u!1 &1544525245
 GameObject:
@@ -7476,6 +7625,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db6abff6144a1304fb2349f1b1e01c18, type: 3}
+--- !u!1 &1660062809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1660062810}
+  - component: {fileID: 1660062812}
+  - component: {fileID: 1660062811}
+  m_Layer: 5
+  m_Name: PlayerUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1660062810
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660062809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1418709859}
+  - {fileID: 1834592572}
+  - {fileID: 4838546}
+  m_Father: {fileID: 888863792}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1660062811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660062809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44ef63c61183d24094d4323b7eb8de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &1660062812
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660062809}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1713242023
 GameObject:
   m_ObjectHideFlags: 0
@@ -7776,18 +7990,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834592571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1427077861}
-  m_Father: {fileID: 888863792}
+  - {fileID: 534457961}
+  - {fileID: 1529285180}
+  m_Father: {fileID: 1660062810}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 141.59998, y: -10}
+  m_AnchoredPosition: {x: -448.4001, y: 300.0964}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1834592573
@@ -7803,6 +8019,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 1427077862}
+  branchImage: {fileID: 534457962}
+  lightningImage: {fileID: 1529285181}
 --- !u!1001 &1873153115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8254,41 +8472,49 @@ PrefabInstance:
 
         A peaceful sight to the eye.
 
-        
 
-        Their
-        leaves rustle in the breeze,
+
+        Their leaves
+        rustle in the breeze,
 
         A symphony of sound.
 
-        Their
-        branches, a home for birds,
+        Their branches,
+        a home for birds,
 
         Welcoming all around.
 
-        
 
-        With
-        roots deep in the earth,
+
+        With roots deep
+        in the earth,
 
         They stand strong and bold.
 
-        Providing
-        shade and fresh air,
+        Providing shade
+        and fresh air,
 
         A story to be told.
 
-        
 
-        So
-        here''s to the trees,
+
+        So here''s to the
+        trees,
 
         A gift from above.
 
-        May they continue
-        to grow,
+        May they continue to grow,
 
-        Filled with life and love.'
+        Filled
+        with life and love.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: iconSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f1ee950cd8824af4897da1f1b11da233, type: 3}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: iconColor.a
+      value: 0.5372549
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_RootOrder
@@ -8296,11 +8522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 247
+      value: 284
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -156
+      value: -861
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_LocalPosition.z

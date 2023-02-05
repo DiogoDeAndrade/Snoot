@@ -11,7 +11,7 @@ public class PlayerUI : MonoBehaviour
         FindPlayer();
     }
 
-    void Update()
+    virtual protected void Update()
     {
         if (player == null) FindPlayer();
         if (player == null) return;
@@ -31,7 +31,7 @@ public class PlayerUI : MonoBehaviour
 
     }
 
-    void FindPlayer()
+    protected void FindPlayer()
     {
         var players = FindObjectsOfType<Player>();
         foreach (var p in players)
