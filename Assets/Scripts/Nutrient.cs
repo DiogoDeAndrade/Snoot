@@ -24,7 +24,7 @@ public class Nutrient : Resource
 
     override protected void OnGrab(Player player, float delta)
     {
-        player.AddToSequence(type);
+        player.AddToSequence(type, this);
     }
 
     struct NutrientDistance

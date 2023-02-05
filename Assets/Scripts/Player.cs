@@ -581,7 +581,7 @@ public class Player : MonoBehaviour
         nutrition = Mathf.Clamp(nutrition + delta, 0.0f, maxNutrition);
     }
 
-    public void AddToSequence(Nutrient.Type type)
+    public void AddToSequence(Nutrient.Type type, Nutrient nutrientObject)
     {
         if (nutrientSequence == null) return;
 
@@ -600,6 +600,9 @@ public class Player : MonoBehaviour
         }
         if (inSequence)
         {
+            var ps = gameData.GetNutrientCatchParticleSystem(type);
+            Instantiate(ps, nutrientObject.transform.position, nutrientObject.transform.rotation);
+
             bool sequenceComplete = true;
             foreach (var s in nutrientSequence)
             {

@@ -9,9 +9,10 @@ public class GameData : ScriptableObject
     [System.Serializable]
     struct NutrientDataElem
     {
-        public Nutrient.Type   type;
-        public Sprite          sprite;
-        public GameObject      prefab;
+        public Nutrient.Type    type;
+        public Sprite           sprite;
+        public GameObject       prefab;
+        public ParticleSystem   catchPS;
     }
 
     [SerializeField] 
@@ -27,6 +28,16 @@ public class GameData : ScriptableObject
         foreach (var nde in nutrients)
         {
             if (nde.type == type) return nde.sprite;
+        }
+
+        return null;
+    }
+
+    public ParticleSystem GetNutrientCatchParticleSystem(Nutrient.Type type)
+    {
+        foreach (var nde in nutrients)
+        {
+            if (nde.type == type) return nde.catchPS;
         }
 
         return null;

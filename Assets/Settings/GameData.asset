@@ -16,18 +16,23 @@ MonoBehaviour:
   - type: 0
     sprite: {fileID: 21300000, guid: b6c69ce1fb693a34bb3ae23c84a692a1, type: 3}
     prefab: {fileID: 7878772148688834091, guid: 88992698dec633444adce67f0848f6fe, type: 3}
+    catchPS: {fileID: 5288771337469515951, guid: 5a5ceafe741717c42bd2a192e4704887, type: 3}
   - type: 1
     sprite: {fileID: 21300000, guid: b162aad25f0309546994f40ef10cd9d4, type: 3}
     prefab: {fileID: 6124020136660315363, guid: dd2cc14e623d3ed4cbab809e787c9dfd, type: 3}
+    catchPS: {fileID: 1236301866899005627, guid: c9b7467779aaff448bd8ef877932e67a, type: 3}
   - type: 2
     sprite: {fileID: 21300000, guid: 0e750871ddea632488b4ad03782d39d9, type: 3}
     prefab: {fileID: 3971407136841541353, guid: 8b194f52e711b4a47b6aacbc6e2dcda7, type: 3}
+    catchPS: {fileID: 4485803041535748952, guid: ba1e3b68a1191dd498529fde195a73d4, type: 3}
   - type: 3
     sprite: {fileID: 21300000, guid: 0857754ab0fb9c940919efc776d33c22, type: 3}
     prefab: {fileID: 6805246504530715829, guid: 8f2d8cebc6d811d45b5e527b73f1b18b, type: 3}
+    catchPS: {fileID: 1342679836534626091, guid: 7afcadb5faf00ef408e975d2bc8cc78b, type: 3}
   - type: 4
     sprite: {fileID: 21300000, guid: d1f9a04954c19ab439220e0d1a58083b, type: 3}
     prefab: {fileID: 634043370482272842, guid: b3061ea1d43eab7479b5ae78bfd6b276, type: 3}
+    catchPS: {fileID: 2649131444223458555, guid: 5f726b7d8d7a5884db5efda1a2ced1fd, type: 3}
   playerPrefab: {fileID: 2563958137223685711, guid: b1c8ac527923e59408573e11a61be06a, type: 3}
   levels:
   - Level01

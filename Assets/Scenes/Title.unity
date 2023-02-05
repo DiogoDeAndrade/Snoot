@@ -272,7 +272,13 @@ MonoBehaviour:
 
     Music By:
 
-    Nelson Milheiros'
+    Nelson Milheiros
+
+
+    Poem
+    UI By:
+
+    Filipe Luz'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e09ba9892d8fdc642a0d2ab45f142bc0, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: bc3c114ffd790db48b2e444baf2dad89, type: 2}
