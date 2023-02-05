@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen21.png)
+![TitleImage](Screenshots/screen24.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -78,6 +78,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 2023/02/05 - 13:16: End of game screen
 ![Game End](Screenshots/screen23.png)
 
+2023/02/05 - 13:53: Title screen
+![Title Screen](Screenshots/screen24.png)
+
 ## License
 
 * All source code by Diogo Andrade is licensed under the MIT license.
@@ -87,6 +90,7 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 * Beetle image by [FreeIconsPNG], free to use (no explicit license)
 * UI images from [FlatIcons] (no explicit license)
 * Generated images created with [Midjourney]
+* Music by [Nelson Milheiro]
 
 ## Metadata
 
@@ -102,3 +106,4 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 [FreeIconsPNG]:https://www.freeiconspng.com/
 [FlatIcons]:http://www.flaticons.com
 [Midjourney]:https://midjourney.com/
+[Nelson Milheiro]:https://soundcloud.com/nelson-milheiro
