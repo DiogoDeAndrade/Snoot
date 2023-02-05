@@ -41,7 +41,14 @@ public class GameManager : MonoBehaviour
                     {
                         if (gameData.levels[i] == sceneName)
                         {
-                            SceneManager.LoadScene(gameData.levels[i + 1]);
+                            if (gameData.levels.Length < (i + 1))
+                            {
+                                SceneManager.LoadScene(gameData.levels[i + 1]);
+                            }
+                            else
+                            {
+                                SceneManager.LoadScene(gameData.gameEndScene);
+                            }
                         }
                     }
                 });

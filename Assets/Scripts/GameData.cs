@@ -19,6 +19,8 @@ public class GameData : ScriptableObject
     public  GameObject          playerPrefab;
     [Scene] 
     public string[]             levels;
+    [Scene]
+    public string               gameEndScene;
 
     public Sprite GetNutrientSprite(Nutrient.Type type)
     {
