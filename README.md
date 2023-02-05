@@ -63,6 +63,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 2023/02/05 - 09:39: Crystal map display, improvements on UI
 ![Crystal Indicator](Screenshots/screen19.png)
 
+2023/02/05 - 10:27: Improved UI, beetle spawning
+![Improved UI](Screenshots/screen20.png)
+
 ## License
 
 * All source code by Diogo Andrade is licensed under the MIT license.

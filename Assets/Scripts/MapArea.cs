@@ -14,6 +14,8 @@ public class MapArea : MonoBehaviour
     [SerializeField] private Water[]    waterPrefabs;
     [SerializeField] private Vector2Int minMaxNutrients = new Vector2Int(12, 16);
     [SerializeField] private Nutrient[] nutrientPrefabs;
+    [SerializeField] private Vector2Int minMaxInsects = new Vector2Int(12, 16);
+    [SerializeField] private Insect[]   insectPrefabs;
 
     struct Circle
     {
@@ -26,6 +28,13 @@ public class MapArea : MonoBehaviour
         if (autoGenerate)
         {
             List<Circle> circles = new List<Circle>();
+
+            // Isolate all crystal
+            var crystals = FindObjectsOfType<Crystal>();
+            foreach (var c in crystals)
+            {
+                circles.Add(new Circle() { pos = c.transform.position, radius = 200 });
+            }
 
             var gridPos = MapAreaManager.ToGrid(transform.position);
             float difficulty = 1.0f + Vector2Int.Distance(Vector2Int.zero, gridPos) / 5.0f;
@@ -58,7 +67,7 @@ public class MapArea : MonoBehaviour
                                                                    0.0f);
                     newObstacle.transform.rotation = Quaternion.Euler(0.0f, 0.0f, Random.Range(0, 360));
 
-                    circles.Add(new Circle { pos = newObstacle.transform.position, radius = newObstacle.radius });
+                    circles.Add(new Circle { pos = newObstacle.transform.position, radius = newObstacle.genRadius });
                 }
             }
 
@@ -75,7 +84,7 @@ public class MapArea : MonoBehaviour
                     bool    collision = true;
                     int     nTries = 0;
                     Vector3 tryPos;
-                    float   radius = newWater.radius;
+                    float   radius = newWater.genRadius;
                     while ((collision) && (nTries++ < 20))
                     {
                         collision = false;
@@ -148,6 +157,52 @@ public class MapArea : MonoBehaviour
                     else
                     {
                         circles.Add(new Circle { pos = newNutrient.transform.position, radius = radius });
+                    }
+                }
+            }
+            if ((insectPrefabs != null) && (insectPrefabs.Length > 0))
+            {
+                int m1 = Mathf.CeilToInt(minMaxInsects.x * difficulty);
+                int m2 = Mathf.CeilToInt(minMaxInsects.y * difficulty);
+                int r = Random.Range(m1, Mathf.Max(m2, minMaxInsects.y) + 1);
+
+                for (int i = 0; i < r; i++)
+                {
+                    int w = Random.Range(0, insectPrefabs.Length);
+
+                    var newInsect = Instantiate(insectPrefabs[w], transform);
+
+                    bool collision = true;
+                    int nTries = 0;
+                    Vector3 tryPos;
+                    float radius = newInsect.genRadius;
+                    while ((collision) && (nTries++ < 20))
+                    {
+                        collision = false;
+
+                        tryPos = new Vector3(Random.Range(-MapAreaManager.areaHalfSize, MapAreaManager.areaHalfSize),
+                                             Random.Range(-MapAreaManager.areaHalfSize, MapAreaManager.areaHalfSize),
+                                             0.0f);
+
+                        foreach (var c in circles)
+                        {
+                            if (Vector3.Distance(c.pos, tryPos) < (radius + c.radius))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+
+                        newInsect.transform.localPosition = tryPos;
+                    }
+
+                    if (collision)
+                    {
+                        Destroy(newInsect);
+                    }
+                    else
+                    {
+                        circles.Add(new Circle { pos = newInsect.transform.position, radius = radius });
                     }
                 }
             }

@@ -23,6 +23,16 @@ public class Insect : MonoBehaviour
 
     public bool isAttacking => alertIcon != null;
 
+    public float genRadius
+    {
+        get
+        {
+            var extents = GetComponent<Collider2D>().bounds.extents;
+
+            return Mathf.Max(extents.x, extents.y) * 1.2f;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

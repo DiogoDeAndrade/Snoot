@@ -6,12 +6,6 @@ public class Nutrient : Resource
 {
     public enum Type { Hydrogen = 0, Oxygen = 1, Nitrogen = 2, Phosphorous = 3, Potassium = 4 };
 
-    public class SequenceElem
-    {
-        public Type type;
-        public bool caught;
-    };
-
 
     [SerializeField] private Type type;
 

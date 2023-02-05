@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Water : Resource
 {
-    public float radius => GetComponent<CircleCollider2D>().radius * transform.localScale.x;
+    public float genRadius
+    {
+        get
+        {
+            var extents = GetComponent<Collider2D>().bounds.extents;
+
+            return Mathf.Max(extents.x, extents.y) * 1.2f;
+        }
+    }
 
     override public bool isWater => true;
 

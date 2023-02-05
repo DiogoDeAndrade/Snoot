@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public float radius = 128;
+    public float genRadius = 128;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnDrawGizmosSelected()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, genRadius);
     }
 }

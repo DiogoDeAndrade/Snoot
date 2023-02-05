@@ -113,3 +113,6 @@ MonoBehaviour:
   - {fileID: 554022031137850143, guid: dd2cc14e623d3ed4cbab809e787c9dfd, type: 3}
   - {fileID: 954125850646268745, guid: 8f2d8cebc6d811d45b5e527b73f1b18b, type: 3}
   - {fileID: 6593332330080101814, guid: b3061ea1d43eab7479b5ae78bfd6b276, type: 3}
+  minMaxInsects: {x: 1, y: 2}
+  insectPrefabs:
+  - {fileID: 3247506790846953877, guid: 98c633eb3d83c16419d2528c758b540b, type: 3}
