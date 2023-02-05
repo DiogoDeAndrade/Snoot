@@ -154,6 +154,126 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &302643156
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: text
+      value: 'Galaxies, leaves in the universe tree,
+
+        Spinning and swirling,
+        in perfect harmony.
+
+        Each one unique, a wonder to see,
+
+        A
+        part of a whole, an endless galaxy.
+
+        
+
+        Just like the leaves,
+        they grow and thrive,
+
+        Dancing in space, soaring so high.
+
+        Their
+        stars, they twinkle, like leaves in the breeze,
+
+        A symphony of light,
+        in an endless sea.
+
+        
+
+        And as they swirl, in an endless
+        dance,
+
+        They tell a story, of the universe''s chance.
+
+        Of
+        life and growth, and all that''s yet to be,
+
+        Galaxies, leaves in
+        the universe tree.
+
+        
+
+        So let us marvel, at this endless
+        sight,
+
+        The universe tree, with all its might.
+
+        Its leaves
+        so vast, its branches so wide,
+
+        A symbol of life, that can''t be
+        denied.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 789bc59110482c1499acec01cad62369, type: 3}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: iconSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f1ee950cd8824af4897da1f1b11da233, type: 3}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: iconColor.a
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4263
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8649
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113124, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_Name
+      value: Crystal06
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7582733672073457500, guid: 1e7cd0e1467e07b4886902911cc91fa9, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7582733672073457500, guid: 1e7cd0e1467e07b4886902911cc91fa9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -779,6 +899,125 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1913883687
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: text
+      value: 'Life giving leaves, with vibrant hues,
+
+        Dance on branches,
+        in the morning dews.
+
+        A symbol of growth, a promise of spring,
+
+        A
+        burst of life, with everything.
+
+        
+
+        Their chlorophyll, a
+        vital key,
+
+        Converting light, to energy.
+
+        A feast for all,
+        a bounty to share,
+
+        A gift from the trees, a symbol of care.
+
+        
+
+        The
+        leaves, they rustle, in the summer breeze,
+
+        A symphony, in nature''s
+        ease.
+
+        Their green so lush, a sight to see,
+
+        A sign of
+        life, for all to be.
+
+        
+
+        So let us cherish, these leaves
+        of green,
+
+        A symbol of life, a constant scene.
+
+        For they
+        bring forth, a world of hope,
+
+        And all that grows, from their simple
+        slope.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a67ecb584fff734892d19053063ec1d, type: 3}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: iconSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f1ee950cd8824af4897da1f1b11da233, type: 3}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: iconColor.a
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4458
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8649
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113124, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: m_Name
+      value: Crystal05
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
 --- !u!1001 &2563958136730920828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1078,7 +1317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4691984857270266871, guid: 2a4e9c5db1771794fa57e26e473f918e, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4691984857270266871, guid: 2a4e9c5db1771794fa57e26e473f918e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1131,51 +1370,58 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: text
-      value: 'Trees, tall and green,
+      value: 'The sun shines bright, upon the tree,
 
-        Reaching for the sky.
+        Illuminating it, for
+        all to see.
 
-        Nature''s
-        work of art,
+        Its leaves, they sparkle, in the light,
 
-        A peaceful sight to the eye.
+        A
+        beacon of hope, a guiding light.
 
+        
 
+        Its branches reach,
+        for the sky above,
 
-        Their leaves
-        rustle in the breeze,
+        With leaves so green, and petals of love.
 
-        A symphony of sound.
+        The
+        light, it dances, on each leaf,
 
-        Their branches,
-        a home for birds,
+        A symbol of life, a symbol of belief.
 
-        Welcoming all around.
+        
 
+        And
+        as the sun sets, and day turns to night,
 
+        The tree still stands,
+        with all its might.
 
-        With roots deep
-        in the earth,
+        Its leaves, they glimmer, in the moonlight,
 
-        They stand strong and bold.
+        A
+        reminder of life, shining so bright.
 
-        Providing shade
-        and fresh air,
+        
 
-        A story to be told.
+        So let us cherish,
+        this sight so rare,
 
+        The sun illuminating, the tree with care.
 
+        For
+        it reminds us, of life''s sweet grace,
 
-        So here''s to the
-        trees,
-
-        A gift from above.
-
-        May they continue to grow,
-
-        Filled
-        with life and love.'
+        And all the beauty, that
+        we can trace.'
       objectReference: {fileID: 0}
+    - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 576dc265c913c3b4b960ebaeb62b83ae, type: 3}
     - target: {fileID: 4943487775235113113, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: iconSprite
       value: 
@@ -1186,15 +1432,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3338
+      value: -168
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4506
+      value: -8424
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113114, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1230,7 +1476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943487775235113124, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
       propertyPath: m_Name
-      value: Crystal01
+      value: Crystal04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3321d8916a98a541b4bb3881bf84cbe, type: 3}
@@ -1243,7 +1489,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7016195771137754248, guid: ab89681b9916e7f43a09631a32d42bcb, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7016195771137754248, guid: ab89681b9916e7f43a09631a32d42bcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1356,7 +1602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7160626330596708711, guid: c2497f2cd7643304b853ff123a0d0db0, type: 3}
       propertyPath: yBounds.x
-      value: -2
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 7160626330596708711, guid: c2497f2cd7643304b853ff123a0d0db0, type: 3}
       propertyPath: gameCamera
@@ -1377,7 +1623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7643795289469881180, guid: 5df592c05ad2e6b49b7eaaca30148898, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7643795289469881180, guid: 5df592c05ad2e6b49b7eaaca30148898, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1434,7 +1680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021795667619580163, guid: 79efd8c339eec1849905de5e7319c2e0, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8021795667619580163, guid: 79efd8c339eec1849905de5e7319c2e0, type: 3}
       propertyPath: m_LocalPosition.x

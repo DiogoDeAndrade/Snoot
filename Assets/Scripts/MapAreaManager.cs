@@ -83,7 +83,7 @@ public class MapAreaManager : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         float x1 =  areaSize * xBounds.x - areaHalfSize;
         float x2 =  areaSize * xBounds.y + areaHalfSize;

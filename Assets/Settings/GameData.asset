@@ -32,4 +32,5 @@ MonoBehaviour:
   levels:
   - Level01
   - Level02
+  - Level03
   gameEndScene: GameEnd
