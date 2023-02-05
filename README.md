@@ -82,6 +82,7 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 ![Title Screen](Screenshots/screen24.png)
 
 2023/02/05 - 14:35: Level design (3 levels)
+2023/02/05 - 15:33: Sound FX
 
 ## License
 
