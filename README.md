@@ -110,6 +110,10 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 
 2023/02/05 - 15:33: Sound FX
 
+2023/02/05 - 14:35: New poem UI
+
+![New poem UI](Screenshots/screen25.png)
+
 ## License
 
 * All source code by Diogo Andrade is licensed under the MIT license.
@@ -128,6 +132,7 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 * Sequence success sound by [Sjonas88]
 * Branch break sounds by [Bini_trns]
 * Electrical zap sound by [Michael Grinnell]
+* Poem UI by Filipe Luz
 
 ## Metadata
 
