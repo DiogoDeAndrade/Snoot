@@ -42,6 +42,8 @@ public class HUDIconManager : MonoBehaviour
 
     void Update()
     {
+        Player player = FindPlayer();
+
         foreach (var icon in icons)
         {
             if (icon.sourceTransform == null)
@@ -55,12 +57,30 @@ public class HUDIconManager : MonoBehaviour
                 {
                     icon.spriteRenderer.color = (icon.color + icon.color * 0.25f * Mathf.Cos(Time.time * 10.0f)).Clamp().ChangeAlpha(icon.color.a);
                 }
+                if (player == null)
+                {
+                    icon.spriteRenderer.color = icon.spriteRenderer.color.ChangeAlpha(0.0f);
+                }
                 UpdateIconPosition(icon);
             }
         }
 
         icons.RemoveAll((icon) => icon.sourceTransform == null);
     }
+
+    Player FindPlayer()
+    {
+        var players = FindObjectsOfType<Player>();
+        foreach (var p in players)
+        {
+            if ((p.isActiveAndEnabled) && (p.playerControl))
+            {
+                return p;
+            }
+        }
+        return null;
+    }
+
 
     GameObject _AddIcon(Sprite image, Color color, Transform pos, float scale, bool blink, bool displayOnScreen)
     {

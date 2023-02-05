@@ -1,6 +1,6 @@
 # SNOOT
 
-![TitleImage](Screenshots/screen18.png)
+![TitleImage](Screenshots/screen21.png)
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
@@ -65,6 +65,9 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 
 2023/02/05 - 10:27: Improved UI, beetle spawning
 ![Improved UI](Screenshots/screen20.png)
+
+2023/02/05 - 12:05: Bounds, surface display, level intro
+![Level Intro](Screenshots/screen21.png)
 
 ## License
 

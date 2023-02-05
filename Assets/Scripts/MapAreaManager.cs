@@ -6,6 +6,9 @@ public class MapAreaManager : MonoBehaviour
 {
     [SerializeField] private Camera     gameCamera;
     [SerializeField] private MapArea    areaPrefab;
+    
+    public Vector2Int   xBounds = new Vector2Int(-10, 10);
+    public Vector2Int   yBounds = new Vector2Int(-10, 0);
 
     Dictionary<Vector2Int, MapArea> areas;
     float                           cameraWidth;
@@ -46,9 +49,9 @@ public class MapAreaManager : MonoBehaviour
         Vector2Int gridMin = ToGrid(min);
         Vector2Int gridMax = ToGrid(max);
         
-        for (int dy = gridMin.y; dy <= gridMax.y; dy++)
+        for (int dy = Mathf.Max(yBounds.x - 1, gridMin.y); dy <= Mathf.Min(yBounds.y, gridMax.y); dy++)
         {
-            for (int dx = gridMin.x; dx <= gridMax.x; dx++)
+            for (int dx = Mathf.Max(xBounds.x - 1, gridMin.x); dx <= Mathf.Min(xBounds.y + 1, gridMax.x); dx++)
             {
                 var areaPos = new Vector2Int(dx, dy);
                 if (areas.ContainsKey(areaPos))
@@ -78,6 +81,20 @@ public class MapAreaManager : MonoBehaviour
                 a.Value.gameObject.SetActive(true);
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        float x1 =  areaSize * xBounds.x - areaHalfSize;
+        float x2 =  areaSize * xBounds.y + areaHalfSize;
+        float y1 =  areaSize * yBounds.x - areaHalfSize;
+        float y2 =  areaSize * yBounds.y + areaHalfSize;
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(new Vector3(x1, y1, 0), new Vector3(x2, y1, 0));
+        Gizmos.DrawLine(new Vector3(x2, y1, 0), new Vector3(x2, y2, 0));
+        Gizmos.DrawLine(new Vector3(x2, y2, 0), new Vector3(x1, y2, 0));
+        Gizmos.DrawLine(new Vector3(x1, y2, 0), new Vector3(x1, y1, 0));
     }
 
     static public Vector2Int ToGrid(Vector2 p)
