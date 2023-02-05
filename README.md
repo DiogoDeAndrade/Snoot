@@ -4,6 +4,22 @@
 
 Developed for the [Global Game Jam'23], theme is "Roots".
 
+In Snoot you have to control the root of a tree in the search of nutrients and water.
+
+You can use the left analog stick/A and D/Left and Right cursor to rotate the root.
+
+Space bar (or Y/triangle button) splits the root and left CTRL (or A/square button) triggers a zap throughout the root that kills all bugs attacking it. Both of these need enough nutrients to trigger.
+
+If you have enough nutrition, you can hit the bugs head on to kill them. It's cheaper than zapping, though!
+
+The nutrients that you need at a moment are displayed in the UI, and you should only pick up those to increase your nutrition.
+
+Be carefull with your water level/hydration. The root will move faster/slower depending on hydration.
+
+The root will die if you don't have enough nutrients or water.
+
+You should search for the crystals hidden deep underground to unlock their secrets...
+
 # History
 
 2023/02/03 - 14:35: Root code working
