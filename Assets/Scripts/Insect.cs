@@ -60,6 +60,8 @@ public class Insect : MonoBehaviour
                 if (dist < 1.0f)
                 {
                     // Attack root
+                    CameraShake2d.Shake(2.5f, 0.05f);
+
                     playerAttacked.ChangeNutrition(-attackPower * Time.deltaTime);
                     if (alertIcon == null)
                     {

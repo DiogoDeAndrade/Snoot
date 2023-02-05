@@ -70,7 +70,10 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 ![Level Intro](Screenshots/screen21.png)
 
 2023/02/05 - 12:05: Music added
-![Music](Screenshots/screen21.png)
+
+2023/02/05 - 12:41: Added faders and game over
+![Game Over](Screenshots/screen22.png)
+
 
 ## License
 
@@ -80,6 +83,7 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 * Rock images by [FreeIconsPNG], free to use (no explicit license)
 * Beetle image by [FreeIconsPNG], free to use (no explicit license)
 * UI images from [FlatIcons] (no explicit license)
+* Generated images created with [Midjourney]
 
 ## Metadata
 
@@ -94,3 +98,4 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 [FabooGuy]:https://www.deviantart.com/fabooguy
 [FreeIconsPNG]:https://www.freeiconspng.com/
 [FlatIcons]:http://www.flaticons.com
+[Midjourney]:https://midjourney.com/

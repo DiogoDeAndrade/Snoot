@@ -498,6 +498,8 @@ public class Player : MonoBehaviour
     private void Die()
     {
         baseMoveSpeed = 0.0f;
+        CameraShake2d.Shake(10.0f, 0.25f);
+
         ClearSequence();
 
         if (!playerControl)
@@ -525,6 +527,11 @@ public class Player : MonoBehaviour
                     }
                 }
                 transform.parent.position = new Vector3(0, 0, 0.1f);
+            }
+            else
+            {
+                var gameOver = FindObjectOfType<GameOver>();
+                gameOver.Show();
             }
         }
         StartCoroutine(ShrinkRootCR());
@@ -584,6 +591,8 @@ public class Player : MonoBehaviour
 
             ClearSequence();
             lastSequenceComplete = Time.time;
+
+            CameraShake2d.Shake(10.0f, 0.25f);
         }
     }
 
@@ -672,6 +681,7 @@ public class Player : MonoBehaviour
                 // Kill enemy
                 ChangeNutrition(-nutritionLossPerEnemyHit);
                 insect.Die();
+                CameraShake2d.Shake(5.0f, 0.1f);
             }
             else
             {
