@@ -74,6 +74,8 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 2023/02/05 - 12:41: Added faders and game over
 ![Game Over](Screenshots/screen22.png)
 
+2023/02/05 - 12:58: Level success
+
 
 ## License
 

@@ -20,16 +20,12 @@ public class GameOver : MonoBehaviour
         {
             if ((Input.GetButtonDown("Fire1")) || (Input.GetButtonDown("Jump")))
             {
-                FullscreenFader.FadeOut(0.25f);
-                StartCoroutine(BackToMainMenuCR());
+                FullscreenFader.FadeOut(0.25f, Color.black, () =>
+                {
+                    SceneManager.LoadScene("Title");
+                });
             }
         }
-    }
-
-    IEnumerator BackToMainMenuCR()
-    {
-        yield return new WaitForSeconds(0.25f);
-        SceneManager.LoadScene("Title");
     }
 
     public void Show()

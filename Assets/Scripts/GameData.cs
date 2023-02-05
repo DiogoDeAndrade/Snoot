@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 [CreateAssetMenu(menuName = "Snoot/GameData")]
 public class GameData : ScriptableObject
@@ -13,8 +14,11 @@ public class GameData : ScriptableObject
         public GameObject      prefab;
     }
 
-    [SerializeField] private NutrientDataElem[] nutrients;
-                     public  GameObject         playerPrefab;
+    [SerializeField] 
+    private NutrientDataElem[]  nutrients;                     
+    public  GameObject          playerPrefab;
+    [Scene] 
+    public string[]             levels;
 
     public Sprite GetNutrientSprite(Nutrient.Type type)
     {
