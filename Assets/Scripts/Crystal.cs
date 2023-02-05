@@ -9,6 +9,8 @@ public class Crystal : MonoBehaviour
     private Color   iconColor = Color.white;
     [SerializeField]
     private Sprite  iconSprite;
+    [SerializeField] 
+    private AudioClip pickupCrystal;
 
     public Sprite image;
     [ResizableTextArea]
@@ -27,6 +29,7 @@ public class Crystal : MonoBehaviour
 
     public void Die()
     {
+        SoundManager.PlaySound(pickupCrystal, 1.0f, 1.0f);
         Destroy(gameObject);
     }
 }

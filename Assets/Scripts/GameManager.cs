@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
                     {
                         if (gameData.levels[i] == sceneName)
                         {
-                            if (gameData.levels.Length < (i + 1))
+                            if ((i + 1) < gameData.levels.Length)
                             {
                                 SceneManager.LoadScene(gameData.levels[i + 1]);
                             }

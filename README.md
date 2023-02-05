@@ -93,6 +93,14 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 * UI images from [FlatIcons] (no explicit license)
 * Generated images created with [Midjourney]
 * Music by [Nelson Milheiro]
+* Rumble sound by [kyles]
+* Gong sound by [InspectorJ]
+* Blood squish sound by [deoking]
+* Triangle sound by [tartina]
+* Wrong choice sound by [unadamlar]
+* Sequence success sound by [Sjonas88]
+* Branch break sounds by [Bini_trns]
+* Electrical zap sound by [Michael Grinnell]
 
 ## Metadata
 
@@ -109,3 +117,11 @@ Developed for the [Global Game Jam'23], theme is "Roots".
 [FlatIcons]:http://www.flaticons.com
 [Midjourney]:https://midjourney.com/
 [Nelson Milheiro]:https://soundcloud.com/nelson-milheiro
+[kyles]:https://freesound.org/people/kyles/
+[InspectorJ]:https://freesound.org/people/InspectorJ/
+[deoking]:https://freesound.org/people/deoking/
+[tartina]:https://freesound.org/people/tartina/
+[unadamlar]:https://freesound.org/people/unadamlar/
+[Sjonas88]:https://freesound.org/people/Sjonas88/
+[Bini_trns]:https://freesound.org/people/Bini_trns/
+[Michael Grinnell]:https://freesound.org/people/michael_grinnell/

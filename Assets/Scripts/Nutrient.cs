@@ -7,7 +7,7 @@ public class Nutrient : Resource
     public enum Type { Hydrogen = 0, Oxygen = 1, Nitrogen = 2, Phosphorous = 3, Potassium = 4 };
 
 
-    [SerializeField] private Type type;
+    [SerializeField] private Type       type;
 
     public Type nutrientType => type;
     public float radius => 16;

@@ -119,6 +119,7 @@ MonoBehaviour:
   initialResourceCount: 1
   resourcePerSecond: 100
   type: 0
+  pickupSound: {fileID: 8300000, guid: 5e3382aaca8094342841418aad4123ae, type: 3}
 --- !u!1 &7878772150456405158
 GameObject:
   m_ObjectHideFlags: 0

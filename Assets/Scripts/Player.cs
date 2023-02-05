@@ -32,6 +32,13 @@ public class Player : MonoBehaviour
     [SerializeField] private    float           nutritionLossPerLighting = 8.0f;
     [SerializeField] private    Material        flashMaterial;
     [SerializeField] private    Color           flashColor;
+    [SerializeField] private    AudioClip       pickupNutrientClip;
+    [SerializeField] private    AudioClip       badNutrientClip;
+    [SerializeField] private    AudioClip       sequenceCompleteClip;
+    [SerializeField] private    AudioClip       deathSound;
+    [SerializeField] private    AudioClip       branchSoundClip;
+    [SerializeField] private    AudioClip       zapSoundClip;
+    [SerializeField] private    AudioSource     digSoundInstance;
 
     private List<Vector3>   path = new List<Vector3>();
     private Rigidbody2D     rb;
@@ -58,6 +65,7 @@ public class Player : MonoBehaviour
     private Coroutine           flashCR;
     private bool                wasPaused = false;
     private Vector2             prevVelocity;
+    private float               digSoundBaseVolume;
 
     struct PrevBranch
     {
@@ -84,6 +92,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        digSoundBaseVolume = digSoundInstance.volume;
+
         bodyMesh = new Mesh();
         bodyMesh.name = "RootBody";
         bodyMeshFilter.mesh = bodyMesh;
@@ -160,6 +170,8 @@ public class Player : MonoBehaviour
                 }
             }
 
+            digSoundInstance.volume = 0.0f;
+
             return;
         }
         else
@@ -185,6 +197,8 @@ public class Player : MonoBehaviour
                 {
                     ChangeNutrition(-nutritionLossPerBranch);
                     Split();
+
+                    SoundManager.PlaySound(branchSoundClip, 1.0f, 1.0f);
                 }
             }
 
@@ -201,6 +215,8 @@ public class Player : MonoBehaviour
                         }
                     }
                     ChangeNutrition(-nutritionLossPerLighting);
+
+                    SoundManager.PlaySound(zapSoundClip, 1.0f, 1.0f);
 
                     flashCR = StartCoroutine(LightningFlashCR());
                 }
@@ -249,10 +265,25 @@ public class Player : MonoBehaviour
             bool dirtActive = false;
             bool glowActive = false;
 
-            if (nutrition > nutritionLossPerEnemyHit) { glowActive = true; }
+            digSoundInstance.pitch = 1.0f;
 
-            if (inWater) { waterActive = true; }
-            else { dirtActive = true; }
+            if (nutrition > nutritionLossPerEnemyHit) 
+            { 
+                glowActive = true;
+                digSoundInstance.volume = digSoundBaseVolume;
+                digSoundInstance.pitch = 1.25f;
+            }
+
+            if (inWater) 
+            {
+                digSoundInstance.volume = digSoundBaseVolume * 0.5f;
+
+                waterActive = true; 
+            }
+            else 
+            { 
+                dirtActive = true; 
+            }
 
             if (waterPS)
             {
@@ -326,6 +357,8 @@ public class Player : MonoBehaviour
 
     void ClearSequence()
     {
+        if (nutrientSequence == null) return;
+
         foreach (var n in nutrientSequence)
         {
             if (n.icon) HUDIconManager.RemoveIcon(n.icon);
@@ -499,6 +532,7 @@ public class Player : MonoBehaviour
     {
         baseMoveSpeed = 0.0f;
         CameraShake2d.Shake(10.0f, 0.25f);
+        SoundManager.PlaySound(deathSound, 1.0f, 1.0f);
 
         ClearSequence();
 
@@ -582,12 +616,20 @@ public class Player : MonoBehaviour
 
                 ClearSequence();
                 lastSequenceComplete = Time.time;
+
+                SoundManager.PlaySound(sequenceCompleteClip, 1.0f, 1.0f);
+            }
+            else
+            {
+                SoundManager.PlaySound(pickupNutrientClip, 1.0f, 1.0f);
             }
         }
         else 
         {
             // Loose nutrition
             ChangeNutrition(-nutritionLossPerBadSequence);
+
+            SoundManager.PlaySound(badNutrientClip, 1.0f, 1.0f);
 
             ClearSequence();
             lastSequenceComplete = Time.time;

@@ -13,8 +13,9 @@ public class Insect : MonoBehaviour
     [SerializeField] private Sprite         alertImage;
     [SerializeField] private Color          alertColor;
     [SerializeField] private ParticleSystem deathPS;
+    [SerializeField] private AudioClip      deathSound;
 
-        private Vector3         spawnPos;
+    private Vector3         spawnPos;
         private Vector3         targetPos;
         private Player          playerAttacked;
         private GameObject      alertIcon;
@@ -150,6 +151,9 @@ public class Insect : MonoBehaviour
         spriteRenderer.enabled = false;
         collider.enabled = false;
         deathPS.Play();
+
+        SoundManager.PlaySound(deathSound, 1.0f, Random.Range(0.9f, 1.1f));
+
         if (alertIcon)
         {
             HUDIconManager.RemoveIcon(alertIcon);
